@@ -1,5 +1,31 @@
 #tag Module
 Protected Module Midi
+	#tag Method, Flags = &h1
+		Protected Sub ChangeChannelInBuffer(Channel As Int32)
+		  If IsAvailable And Channel >= 0 And Channel <= 15 Then HP_ChangeChannelInBuffer(Channel)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Function EventName(Type As Int32) As String
+		  If Not IsAvailable() Then Return ""
+		  Dim mb As MemoryBlock = HP_TypeName(Type)
+		  If mb <> Nil Then Return mb.CString(0)
+		End Function
+	#tag EndMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Sub HP_ChangeChannelInBuffer Lib "HP_midifile" Alias "?HP_ChangeChannelInBuffer@@YAXH@Z" (Channel As Int32)
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangePPQN Lib "HP_midifile" Alias "?HP_ChangePPQN@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, PPQN As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Copy Lib "HP_midifile" Alias "?HP_Copy@@YAIPAVMIDIFile@@@Z" (MIDIFile As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Sub HP_Delete Lib "HP_midifile" Alias "?HP_Delete@@YAXPAX@Z" (mb As Ptr)
 	#tag EndExternalMethod
@@ -25,6 +51,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_InsertRawEvent Lib "HP_midifile" Alias "?HP_InsertRawEvent@@YAIPAVMIDIFile@@HPAEHH@Z" (MIDIFile As Ptr, Time As Int32, Data As Ptr, Length As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_IsPlaying Lib "HP_midifile" Alias "?HP_IsPlaying@@YA_NPAVMIDIFile@@@Z" (MIDIFile As Ptr) As Boolean
 	#tag EndExternalMethod
 
@@ -33,7 +63,15 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Paste Lib "HP_midifile" Alias "?HP_Paste@@YAIPAVMIDIFile@@H_NH@Z" (MIDIFile As Ptr, Time As Int32, DeleteInDest As Boolean, DelEventsChan As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_Play Lib "HP_midifile" Alias "?HP_Play@@YAIPAVMIDIFile@@H_N@Z" (MIDIFile As Ptr, SelectedEvents As Integer, SendBefore As Boolean) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_PlayTempo Lib "HP_midifile" Alias "?HP_PlayTempo@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, Percent As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -41,15 +79,31 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadEvent Lib "HP_midifile" Alias "?HP_ReadEvent@@YAIPAVMIDIFile@@PAH111@Z" (MIDIFile As Ptr, ByRef ID As Int32, ByRef Channel As Int32, ByRef Time As Int32, ByRef Type As UInt32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadPPQN Lib "HP_midifile" Alias "?HP_ReadPPQN@@YAIPAVMIDIFile@@PAH@Z" (MIDIFile As Ptr, ByRef PPQN As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Save Lib "HP_midifile" Alias "?HP_Save@@YAIPAVMIDIFile@@PBDH@Z" (MIDIFile As Ptr, Path As CString, Format As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_SelectMIDIDevice Lib "HP_midifile" Alias "?HP_SelectMIDIDevice@@YAIH@Z" (ID As Integer) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Function HP_SetPlayStopWait Lib "HP_midifile" (MIDIFile As Ptr, Mode As Int32) As ErrorCodes
+		Private Soft Declare Function HP_SetPlayStopWait Lib "HP_midifile" Alias "?HP_SetPlayStopWait@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, Mode As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_SetPlayTime Lib "HP_midifile" Alias "?HP_SetPlayTime@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, NewTime As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_TypeName Lib "HP_midifile" Alias "?HP_TypeName@@YAPADI@Z" (Type As Int32) As Ptr
 	#tag EndExternalMethod
 
 	#tag Method, Flags = &h1
@@ -78,6 +132,13 @@ Protected Module Midi
 	#tag Structure, Name = HP_DEVICE, Flags = &h21
 		ID As Int32
 		Name As String*32
+	#tag EndStructure
+
+	#tag Structure, Name = MidiEvent, Flags = &h1
+		ID As Int32
+		  Channel As Int32
+		  Time As Int32
+		Type As UInt32
 	#tag EndStructure
 
 
