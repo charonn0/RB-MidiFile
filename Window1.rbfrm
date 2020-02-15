@@ -19,11 +19,11 @@ Begin Window Window1
    MinHeight       =   64
    MinimizeButton  =   True
    MinWidth        =   64
-   Placement       =   0
-   Resizeable      =   True
-   Title           =   "Untitled"
+   Placement       =   2
+   Resizeable      =   False
+   Title           =   "HP MidiFile Demo"
    Visible         =   True
-   Width           =   5.39e+2
+   Width           =   3.81e+2
    Begin Timer Timer1
       Height          =   32
       Index           =   -2147483648
@@ -62,7 +62,7 @@ Begin Window Window1
       Top             =   48
       Value           =   0
       Visible         =   True
-      Width           =   520
+      Width           =   356
    End
    Begin Slider Slider2
       AutoDeactivate  =   True
@@ -71,7 +71,7 @@ Begin Window Window1
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   432
+      Left            =   268
       LineStep        =   1
       LiveScroll      =   ""
       LockBottom      =   ""
@@ -185,33 +185,6 @@ Begin Window Window1
       Visible         =   True
       Width           =   80
    End
-   Begin Canvas Canvas1
-      AcceptFocus     =   ""
-      AcceptTabs      =   ""
-      AutoDeactivate  =   True
-      Backdrop        =   ""
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   36
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   340
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   7
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   36
-   End
    Begin Label TimeLabel
       AutoDeactivate  =   True
       Bold            =   ""
@@ -223,7 +196,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   226
+      Left            =   144
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -235,12 +208,12 @@ Begin Window Window1
       TabIndex        =   7
       TabPanelIndex   =   0
       Text            =   "00:00:00/00:00:00"
-      TextAlign       =   0
+      TextAlign       =   1
       TextColor       =   &h000000
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   65
+      Top             =   76
       Transparent     =   True
       Underline       =   ""
       Visible         =   True
@@ -311,6 +284,8 @@ End
 		  If Not player.IsPlaying Then
 		    Me.Mode = Timer.ModeOff
 		    TimeTimer.Mode = Timer.ModeOff
+		    PlayBtn.Caption = "Play"
+		    StopBtn.Enabled = False
 		    Return
 		  End If
 		  Dim total As Int32 = player.Duration
@@ -380,30 +355,6 @@ End
 		  player.Stop
 		  PlayBtn.Caption = "Play"
 		  Me.Enabled = False
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Canvas1
-	#tag Event
-		Sub Paint(g As Graphics)
-		  g.ForeColor = &c0000FF00
-		  g.FillRect(0, 0, g.Width, g.Height)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  Me.AcceptFileDrop(FileTypes1.All)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub DropObject(obj As DragItem, action As Integer)
-		  If player <> Nil And player.IsPlaying Then Return
-		  Dim f As FolderItem = obj.FolderItem
-		  If f <> Nil And f.Exists Then
-		    player = New Midi.Player(f)
-		    PlayBtn.Enabled = True
-		    StopBtn.Enabled = False
-		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
