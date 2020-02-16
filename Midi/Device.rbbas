@@ -9,13 +9,13 @@ Protected Class Device
 
 	#tag Method, Flags = &h0
 		 Shared Function GetDevice(Index As Integer) As Midi.Device
-		  If Not Midi.IsAvailable Then Raise New MidiException
+		  If Not Midi.IsAvailable Then Raise New MidiException(ErrorCodes.BINDING_ERROR)
 		  Dim devlist As Ptr
 		  Dim devcount As UInt32
 		  Dim err As ErrorCodes
 		  
 		  err = HP_GetMIDIDevices(devlist, devcount)
-		  If err <> ErrorCodes.None Then Raise New MidiException
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
 		  If Index > devcount Then Raise New OutOfBoundsException
 		  Dim item As Ptr = devlist
 		  Dim c As Integer

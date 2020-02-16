@@ -1,23 +1,40 @@
 #tag Class
-Protected Class EventSink
-Inherits MidiFile
+Protected Class SysExEvent
+Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
-		Sub InsertEvent(ATEvent As Midi.Events.AfterTouchEvent)
-		  mLastError = HP_InsertAftertouch(Me.Handle, ATEvent.Time, ATEvent.Channel, ATEvent.Note, ATEvent.Pressure)
+		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
+		  Dim err As ErrorCodes = HP_ReadSysEx(MidiFile.Handle, EventID, mTime, mData, mLength)
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mType = EventType.Other
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub InsertEvent(Note As Midi.Events.NoteEvent)
-		  mLastError = HP_InsertNote(Me.Handle, Note.Time, Note.Length, Note.Note, Note.Channel, Note.Velocity)
-		End Sub
-	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub InsertRawEvent(Time As Int32, RawEvent As MemoryBlock)
-		  mLastError = HP_InsertRawEvent(Me.Handle, Time, RawEvent, RawEvent.Size)
-		End Sub
-	#tag EndMethod
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mData
+			End Get
+		#tag EndGetter
+		Data As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mLength
+			End Get
+		#tag EndGetter
+		Length As Int32
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mData As Ptr
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mLength As Int32
+	#tag EndProperty
 
 
 	#tag ViewBehavior

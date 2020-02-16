@@ -1,4 +1,4 @@
 #tag Interface
-Protected Interface MidiEvent
+Protected Interface MidiEventImp
 End Interface
 #tag EndInterface

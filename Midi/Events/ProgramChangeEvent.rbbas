@@ -1,26 +1,30 @@
 #tag Class
-Protected Class MidiException
-Inherits RuntimeException
-	#tag Method, Flags = &h1000
-		Sub Constructor(ErrorCode As Midi.ErrorCodes)
-		  Me.ErrorNumber = CType(ErrorCode, Int32)
-		  If ErrorCode <> ErrorCodes.BINDING_ERROR Then
-		    Me.Message = Midi.FormatError(ErrorCode)
-		  Else
-		    Me.Message = "An error occured while attempting to create a new midi object."
-		  End If
+Protected Class ProgramChangeEvent
+Inherits Midi.Events.MidiEvent
+	#tag Method, Flags = &h0
+		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
+		  Dim err As ErrorCodes = HP_ReadProgramChange(MidiFile.Handle, EventID, mTime, mChannel, mNumber)
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mType = EventType.ProgramChange
 		End Sub
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h21
+		Private mNumber As Int32
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mNumber
+			End Get
+		#tag EndGetter
+		Number As Int32
+	#tag EndComputedProperty
+
+
 	#tag ViewBehavior
-		#tag ViewProperty
-			Name="ErrorNumber"
-			Group="Behavior"
-			InitialValue="0"
-			Type="Integer"
-			InheritedFrom="RuntimeException"
-		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
@@ -34,13 +38,6 @@ Inherits RuntimeException
 			Group="Position"
 			InitialValue="0"
 			InheritedFrom="Object"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Message"
-			Group="Behavior"
-			Type="String"
-			EditorType="MultiLineEditor"
-			InheritedFrom="RuntimeException"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"

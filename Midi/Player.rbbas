@@ -45,6 +45,20 @@ Inherits MidiFile
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  If Me.Handle <> Nil And IsPlaying Then Return HP_PlayEventTime(Me.Handle)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If Me.Handle <> Nil Then mLastError = HP_SetPlayTime(Me.Handle, value)
+			End Set
+		#tag EndSetter
+		EventTime As Int32
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  If Me.Handle <> Nil Then Return HP_IsPlaying(Me.Handle)
 			End Get
 		#tag EndGetter
@@ -65,11 +79,6 @@ Inherits MidiFile
 			  If Me.Handle <> Nil And IsPlaying Then Return HP_PlayTime(Me.Handle)
 			End Get
 		#tag EndGetter
-		#tag Setter
-			Set
-			  If Me.Handle <> Nil Then mLastError = HP_SetPlayTime(Me.Handle, value)
-			End Set
-		#tag EndSetter
 		PlayTime As Int32
 	#tag EndComputedProperty
 

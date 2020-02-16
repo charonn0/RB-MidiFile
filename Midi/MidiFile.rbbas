@@ -2,9 +2,9 @@
 Protected Class MidiFile
 	#tag Method, Flags = &h0
 		Sub Constructor()
-		  If Not Midi.IsAvailable Then Raise New MidiException
+		  If Not Midi.IsAvailable Then Raise New PlatformNotSupportedException
 		  mMidi = HP_Init()
-		  If mMidi = Nil Then Raise New MidiException
+		  If mMidi = Nil Then Raise New MidiException(ErrorCodes.BINDING_ERROR)
 		End Sub
 	#tag EndMethod
 
@@ -18,12 +18,6 @@ Protected Class MidiFile
 		Private Sub Destructor()
 		  If mMidi <> Nil Then mLastError = HP_Free(mMidi)
 		  mMidi = Nil
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub InsertRawEvent(Time As Int32, RawEvent As MemoryBlock)
-		  mLastError = HP_InsertRawEvent(mMidi, Time, RawEvent, RawEvent.Size)
 		End Sub
 	#tag EndMethod
 
@@ -115,5 +109,40 @@ Protected Class MidiFile
 	#tag EndConstant
 
 
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			InheritedFrom="Object"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			InheritedFrom="Object"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InheritedFrom="Object"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InheritedFrom="Object"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			InheritedFrom="Object"
+		#tag EndViewProperty
+	#tag EndViewBehavior
 End Class
 #tag EndClass
