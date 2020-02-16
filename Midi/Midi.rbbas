@@ -1,5 +1,15 @@
 #tag Module
 Protected Module Midi
+	#tag Method, Flags = &h21
+		Private Function AbsolutePath_(Extends f As FolderItem) As String
+		  #If RBVersion > 2019 Then
+		    Return f.NativePath
+		  #Else
+		    Return f.AbsolutePath
+		  #endif
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub ChangeChannelInBuffer(Channel As Int32)
 		  If IsAvailable And Channel >= 0 And Channel <= 15 Then HP_ChangeChannelInBuffer(Channel)

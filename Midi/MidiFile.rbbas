@@ -23,7 +23,7 @@ Protected Class MidiFile
 
 	#tag Method, Flags = &h0
 		Sub Load(MidiFile As FolderItem)
-		  mLastError = HP_Load(mMidi, MidiFile.AbsolutePath)
+		  mLastError = HP_Load(mMidi, MidiFile.AbsolutePath_)
 		End Sub
 	#tag EndMethod
 
@@ -35,7 +35,7 @@ Protected Class MidiFile
 
 	#tag Method, Flags = &h0
 		Sub Save(MidiFile As FolderItem, Format As Int32 = HP_SMF0)
-		  mLastError = HP_Save(mMidi, MidiFile.AbsolutePath, Format)
+		  mLastError = HP_Save(mMidi, MidiFile.AbsolutePath_, Format)
 		End Sub
 	#tag EndMethod
 
