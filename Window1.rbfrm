@@ -324,7 +324,7 @@ End
 #tag Events Timer1
 	#tag Event
 		Sub Action()
-		  If UILock Then Return
+		  If UILock Or PlayBtn.Caption = "Resume" Then Return
 		  If Not player.IsPlaying Then
 		    Me.Mode = Timer.ModeOff
 		    TimeTimer.Mode = Timer.ModeOff
@@ -337,7 +337,6 @@ End
 		  UILock = True
 		  Slider1.Value = now * 100 / total
 		  UILock = False
-		  If TimeTimer.Mode <> Timer.ModeMultiple Then TimeTimer.Mode = Timer.ModeMultiple
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -369,14 +368,17 @@ End
 		  Case "Play"
 		    player.Play()
 		    Me.Caption = "Pause"
+		    TimeTimer.Mode = Timer.ModeMultiple
 		    
 		  Case "Pause"
 		    player.Pause()
 		    Me.Caption = "Resume"
+		    TimeTimer.Mode = Timer.ModeOff
 		    
 		  Case "Resume"
 		    player.Resume()
 		    Me.Caption = "Pause"
+		    TimeTimer.Mode = Timer.ModeMultiple
 		    
 		  End Select
 		  

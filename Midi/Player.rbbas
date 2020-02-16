@@ -12,6 +12,7 @@ Inherits MidiFile
 		Sub Pause()
 		  Const HP_WAIT_PLAY = 2
 		  mLastError = HP_SetPlayStopWait(Me.Handle, HP_WAIT_PLAY)
+		  If mLastError = ErrorCodes.None Then mPaused = True Else Break
 		End Sub
 	#tag EndMethod
 
@@ -20,6 +21,7 @@ Inherits MidiFile
 		  Dim selection As Integer = 1
 		  If SelectedOnly Then selection = 2
 		  mLastError = HP_Play(Me.Handle, selection, SendBefore)
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
 		End Sub
 	#tag EndMethod
 
@@ -31,6 +33,7 @@ Inherits MidiFile
 		  Else
 		    Me.Play()
 		  End If
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
 		End Sub
 	#tag EndMethod
 
@@ -38,6 +41,7 @@ Inherits MidiFile
 		Sub Stop()
 		  Const HP_STOP_PLAY = 1
 		  mLastError = HP_SetPlayStopWait(Me.Handle, HP_STOP_PLAY)
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
 		End Sub
 	#tag EndMethod
 
