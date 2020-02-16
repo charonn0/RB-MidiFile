@@ -1,9 +1,5 @@
 ## Introduction
-[HP MIDIFILE](http://www.heikoplate.de/hpm/) is a Windows MIDI playback and editing library.
-
-**RB-MidiFile** is a HP MIDIDFILE [binding](http://en.wikipedia.org/wiki/Language_binding) for Realbasic and Xojo ("classic" framework) projects. 
-
-The minimum supported HP MIDIFILE version is 1.37. The minimum supported Xojo version is RS2010R4.
+[HP MIDIFILE](http://www.heikoplate.de/hpm/) is a Windows MIDI playback and editing library. **RB-MidiFile** is a HP MIDIDFILE [binding](http://en.wikipedia.org/wiki/Language_binding) for Realbasic and Xojo ("classic" framework) projects. The minimum supported HP MIDIFILE version is 1.37. The minimum supported Xojo version is RS2010R4.
 
 ## Example
 This example plays a MIDI file:
