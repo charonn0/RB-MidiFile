@@ -7,7 +7,7 @@ Begin Window Window1
    Frame           =   0
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   2.86e+2
+   Height          =   9.2e+1
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -23,7 +23,41 @@ Begin Window Window1
    Resizeable      =   False
    Title           =   "HP MidiFile Demo"
    Visible         =   True
-   Width           =   6.61e+2
+   Width           =   3.68e+2
+   Begin Label Label1
+      AutoDeactivate  =   False
+      Bold            =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   262
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Multiline       =   ""
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      Text            =   "-Tempo+"
+      TextAlign       =   1
+      TextColor       =   &h000000
+      TextFont        =   "System"
+      TextSize        =   8
+      TextUnit        =   0
+      Top             =   0
+      Transparent     =   True
+      Underline       =   ""
+      Visible         =   True
+      Width           =   100
+   End
    Begin Timer Timer1
       Height          =   32
       Index           =   -2147483648
@@ -43,7 +77,7 @@ Begin Window Window1
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   152
+      Left            =   6
       LineStep        =   1
       LiveScroll      =   False
       LockBottom      =   ""
@@ -59,38 +93,10 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       TickStyle       =   1
-      Top             =   48
+      Top             =   41
       Value           =   0
       Visible         =   True
       Width           =   356
-   End
-   Begin Slider Slider2
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   15
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   408
-      LineStep        =   1
-      LiveScroll      =   ""
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Maximum         =   400
-      Minimum         =   10
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   0
-      Top             =   21
-      Value           =   100
-      Visible         =   True
-      Width           =   100
    End
    Begin PushButton LoadBtn
       AutoDeactivate  =   True
@@ -105,7 +111,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   152
+      Left            =   6
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -118,7 +124,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   14
+      Top             =   7
       Underline       =   ""
       Visible         =   True
       Width           =   80
@@ -136,7 +142,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   234
+      Left            =   88
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -149,7 +155,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   14
+      Top             =   7
       Underline       =   ""
       Visible         =   True
       Width           =   80
@@ -167,7 +173,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   316
+      Left            =   170
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -180,7 +186,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   14
+      Top             =   7
       Underline       =   ""
       Visible         =   True
       Width           =   80
@@ -196,8 +202,8 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   284
-      LockBottom      =   True
+      Left            =   138
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   ""
@@ -213,7 +219,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   83
+      Top             =   66
       Transparent     =   True
       Underline       =   ""
       Visible         =   True
@@ -231,54 +237,33 @@ Begin Window Window1
       Top             =   201
       Width           =   32
    End
-   Begin Listbox EventList
+   Begin Slider Slider2
       AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   ""
-      Border          =   True
-      ColumnCount     =   6
-      ColumnsResizable=   True
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
       Enabled         =   True
-      EnableDrag      =   True
-      EnableDragReorder=   True
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   True
-      HeadingIndex    =   -1
-      Height          =   162
+      Height          =   15
       HelpTag         =   ""
-      Hierarchical    =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Type	Time	Channel	Length	Value	Modifier"
-      Italic          =   ""
-      Left            =   12
-      LockBottom      =   False
+      Left            =   262
+      LineStep        =   1
+      LiveScroll      =   ""
+      LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   ""
       LockTop         =   True
-      RequiresSelection=   ""
+      Maximum         =   400
+      Minimum         =   10
+      PageStep        =   20
       Scope           =   0
-      ScrollbarHorizontal=   ""
-      ScrollBarVertical=   True
-      SelectionType   =   1
-      TabIndex        =   9
+      TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   115
-      Underline       =   ""
-      UseFocusRing    =   True
+      TickStyle       =   0
+      Top             =   14
+      Value           =   100
       Visible         =   True
-      Width           =   641
-      _ScrollWidth    =   -1
+      Width           =   100
    End
 End
 #tag EndWindow
@@ -292,55 +277,6 @@ End
 		End Sub
 	#tag EndEvent
 
-
-	#tag Method, Flags = &h21
-		Private Sub AddEventRow(EventData As Midi.Events.MidiEvent)
-		  Dim name, time, channel, length, value, modifier As String
-		  name = Midi.EventName(EventData.Type)
-		  time = FormatTime(EventData.Time)
-		  channel = Str(EventData.Channel)
-		  
-		  Select Case EventData
-		  Case IsA Midi.Events.NoteEvent
-		    Dim note As Midi.Events.NoteEvent = Midi.Events.NoteEvent(EventData)
-		    length = Str(note.Length)
-		    value = Str(note.Note)
-		    modifier = Str(note.Velocity)
-		    
-		  Case IsA Midi.Events.AfterTouchEvent
-		    Dim atevent As Midi.Events.AfterTouchEvent = Midi.Events.AfterTouchEvent(EventData)
-		    value = Str(atevent.Note)
-		    modifier = Str(atevent.Pressure)
-		    
-		  Case IsA Midi.Events.ControllerEvent
-		    Dim ctlevent As Midi.Events.ControllerEvent = Midi.Events.ControllerEvent(EventData)
-		    value = Str(ctlevent.Value)
-		    modifier = Str(ctlevent.Number)
-		    
-		  Case IsA Midi.Events.RPNEvent
-		    Dim rpnevent As Midi.Events.RPNEvent = Midi.Events.RPNEvent(EventData)
-		    value = Str(rpnevent.Value)
-		    modifier = Str(rpnevent.Number)
-		    
-		  Case IsA Midi.Events.ProgramChangeEvent
-		    Dim pcevent As Midi.Events.ProgramChangeEvent = Midi.Events.ProgramChangeEvent(EventData)
-		    value = Str(pcevent.Number)
-		    
-		  Case IsA Midi.Events.ChannelPressureEvent
-		    Dim cpevent As Midi.Events.ChannelPressureEvent = Midi.Events.ChannelPressureEvent(EventData)
-		    value = Str(cpevent.Pressure)
-		    
-		  Case IsA Midi.Events.PitchWheelEvent
-		    Dim pwevent As Midi.Events.PitchWheelEvent = Midi.Events.PitchWheelEvent(EventData)
-		    value = Str(pwevent.Value)
-		    
-		  Else
-		    
-		  End Select
-		  
-		  EventList.AddRow(name, time, channel, length, value, modifier)
-		End Sub
-	#tag EndMethod
 
 	#tag Method, Flags = &h1
 		Protected Function FormatTime(Milliseconds As Int64, FractionalSeconds As Boolean = False) As String
@@ -415,26 +351,12 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Slider2
-	#tag Event
-		Sub ValueChanged()
-		  player.Tempo = Me.Value
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events LoadBtn
 	#tag Event
 		Sub Action()
 		  Dim f As FolderItem = GetOpenFolderItem(FileTypes1.All)
 		  If f = Nil Or Not f.Exists Then Return
 		  player = New Midi.Player(f)
-		  Dim evntsrc As New Midi.EventSource
-		  evntsrc.Load(f)
-		  EventList.DeleteAllRows
-		  
-		  Do
-		    AddEventRow(evntsrc.CurrentEvent)
-		  Loop Until not evntsrc.GetNextEvent()
 		  PlayBtn.Enabled = True
 		  
 		End Sub
@@ -497,6 +419,13 @@ End
 		Sub Action()
 		  If UILock Then Return
 		  TimeLabel.Text = FormatTime(Player.PlayTime, mFractionalSeconds) + "/" + FormatTime(Player.Duration, mFractionalSeconds)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Slider2
+	#tag Event
+		Sub ValueChanged()
+		  player.Tempo = Me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

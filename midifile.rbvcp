@@ -23,6 +23,7 @@ Class=ProgramChangeEvent;Midi/Events/ProgramChangeEvent.rbbas;&h177FBFFF;&h21263
 Class=ChannelPressureEvent;Midi/Events/ChannelPressureEvent.rbbas;&h65B52FFF;&h212637FF;false
 Class=PitchWheelEvent;Midi/Events/PitchWheelEvent.rbbas;&h3BF337FF;&h212637FF;false
 Class=SysExEvent;Midi/Events/SysExEvent.rbbas;&h42B1EFFF;&h212637FF;false
+Window=EventList;EventList.rbfrm;&h6DDF07FF;&h0;false
 DefaultWindow=Window1
 MajorVersion=1
 MinorVersion=0
