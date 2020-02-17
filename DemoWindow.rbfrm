@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Window1
+Begin Window DemoWindow
    BackColor       =   &hFFFFFF
    Backdrop        =   ""
    CloseButton     =   True
@@ -7,7 +7,7 @@ Begin Window Window1
    Frame           =   0
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   9.2e+1
+   Height          =   1.18e+2
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -61,13 +61,13 @@ Begin Window Window1
    Begin Timer Timer1
       Height          =   32
       Index           =   -2147483648
-      Left            =   1007
+      Left            =   384
       LockedInPosition=   False
       Mode            =   0
       Period          =   100
       Scope           =   0
       TabPanelIndex   =   0
-      Top             =   157
+      Top             =   10
       Width           =   32
    End
    Begin Slider Slider1
@@ -228,13 +228,13 @@ Begin Window Window1
    Begin Timer TimeTimer
       Height          =   32
       Index           =   -2147483648
-      Left            =   1007
+      Left            =   384
       LockedInPosition=   False
       Mode            =   0
       Period          =   1
       Scope           =   0
       TabPanelIndex   =   0
-      Top             =   201
+      Top             =   54
       Width           =   32
    End
    Begin Slider Slider2
@@ -264,6 +264,38 @@ Begin Window Window1
       Value           =   100
       Visible         =   True
       Width           =   100
+   End
+   Begin ComboBox DeviceList
+      AutoComplete    =   False
+      AutoDeactivate  =   True
+      Bold            =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialValue    =   ""
+      Italic          =   ""
+      Left            =   6
+      ListIndex       =   0
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   92
+      Underline       =   ""
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   356
    End
 End
 #tag EndWindow
@@ -428,6 +460,27 @@ End
 	#tag Event
 		Sub ValueChanged()
 		  player.Tempo = Me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DeviceList
+	#tag Event
+		Sub Open()
+		  Dim c As Integer = Midi.Device.Count
+		  For i As Integer = 0 To c - 1
+		    Dim d As Midi.Device = Midi.Device.GetDevice(i)
+		    Me.AddRow(d.Name)
+		    Me.RowTag(Me.ListCount - 1) = d
+		  Next
+		  
+		  If Me.ListCount > 0 Then Me.ListIndex = 0
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  If player = Nil Or player.IsPlaying Then Return
+		  Dim err As Midi.ErrorCodes = Midi.SelectMidiDevice(Me.RowTag(Me.ListIndex))
+		  If err <> Midi.ErrorCodes.None Then Break
 		End Sub
 	#tag EndEvent
 #tag EndEvents
