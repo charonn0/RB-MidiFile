@@ -35,7 +35,7 @@ Begin Window DemoWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   262
+      Left            =   6
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,7 +52,7 @@ Begin Window DemoWindow
       TextFont        =   "System"
       TextSize        =   8
       TextUnit        =   0
-      Top             =   0
+      Top             =   57
       Transparent     =   True
       Underline       =   ""
       Visible         =   True
@@ -244,7 +244,7 @@ Begin Window DemoWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   262
+      Left            =   6
       LineStep        =   1
       LiveScroll      =   ""
       LockBottom      =   ""
@@ -260,7 +260,7 @@ Begin Window DemoWindow
       TabPanelIndex   =   0
       TabStop         =   True
       TickStyle       =   0
-      Top             =   14
+      Top             =   71
       Value           =   100
       Visible         =   True
       Width           =   100
@@ -297,6 +297,37 @@ Begin Window DemoWindow
       Visible         =   True
       Width           =   356
    End
+   Begin PushButton EditBtn
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "Edit"
+      Default         =   ""
+      Enabled         =   False
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   252
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   7
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
@@ -313,9 +344,6 @@ End
 	#tag Method, Flags = &h1
 		Protected Function FormatTime(Milliseconds As Int64, FractionalSeconds As Boolean = False) As String
 		  ' Formats the period of time denoted by Milliseconds as HH:MM:SS. If FractionalSeconds is true then fractions of a second are included.
-		  '
-		  ' See:
-		  ' https://github.com/charonn0/RB-libvlc/wiki/libvlc.FormatTime
 		  
 		  Dim hours As Integer = (Milliseconds / (1000 * 60 * 60))
 		  Dim minutes As Integer = (Milliseconds / (1000 * 60)) Mod 60
@@ -390,7 +418,7 @@ End
 		  player = New Midi.MidiFile
 		  player.Load(f)
 		  PlayBtn.Enabled = True
-		  
+		  EditBtn.Enabled = True
 		End Sub
 	#tag EndEvent
 #tag EndEvents
