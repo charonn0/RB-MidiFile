@@ -3,9 +3,10 @@ Protected Class NoteEvent
 Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
+		  Super.Constructor(MidiFile)
 		  Dim err As ErrorCodes = HP_ReadNote(MidiFile.Handle, EventID, mTime, mChannel, mNote, mVelocity, mLength)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.Note
+		  mType = EventType.NOTE
 		End Sub
 	#tag EndMethod
 

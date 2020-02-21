@@ -3,6 +3,7 @@ Protected Class ControllerEvent
 Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
+		  Super.Constructor(MidiFile)
 		  Dim err As ErrorCodes = HP_ReadController(MidiFile.Handle, EventID, mTime, mChannel, mNumber, mValue)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
 		  mType = EventType.CONTROLLER_TYPE

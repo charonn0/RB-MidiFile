@@ -3,7 +3,8 @@ Protected Class ProgramChangeEvent
 Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
-		  Dim err As ErrorCodes = HP_ReadProgramChange(MidiFile.Handle, EventID, mTime, mChannel, mNumber)
+		  Super.Constructor(MidiFile)
+		  Dim err As ErrorCodes = HP_ReadProgramChange(MidiFile.Handle, EventID, mTime, mChannel, mVoice)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
 		  mType = EventType.PROGRAM_CHANGE
 		End Sub
@@ -11,7 +12,7 @@ Inherits Midi.Events.MidiEvent
 
 
 	#tag Property, Flags = &h21
-		Private mNumber As Int32
+		Private mVoice As Int32
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
