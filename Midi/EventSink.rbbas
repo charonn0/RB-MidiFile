@@ -1,23 +1,38 @@
 #tag Class
 Protected Class EventSink
-Inherits MidiFile
+	#tag Method, Flags = &h0
+		Sub Constructor(Destination As Midi.MidiFile)
+		  mDestination = Destination
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub InsertEvent(ATEvent As Midi.Events.AfterTouchEvent)
-		  mLastError = HP_InsertAftertouch(Me.Handle, ATEvent.Time, ATEvent.Channel, ATEvent.Note, ATEvent.Pressure)
+		  mLastError = HP_InsertAftertouch(mDestination.Handle, ATEvent.Time, ATEvent.Channel, ATEvent.Note, ATEvent.Pressure)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub InsertEvent(Note As Midi.Events.NoteEvent)
-		  mLastError = HP_InsertNote(Me.Handle, Note.Time, Note.Length, Note.Note, Note.Channel, Note.Velocity)
+		  mLastError = HP_InsertNote(mDestination.Handle, Note.Time, Note.Length, Note.Note, Note.Channel, Note.Velocity)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub InsertRawEvent(Time As Int32, RawEvent As MemoryBlock)
-		  mLastError = HP_InsertRawEvent(Me.Handle, Time, RawEvent, RawEvent.Size)
+		  mLastError = HP_InsertRawEvent(mDestination.Handle, Time, RawEvent, RawEvent.Size)
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private mDestination As MidiFile
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mLastError As Midi.ErrorCodes
+	#tag EndProperty
 
 
 	#tag ViewBehavior
