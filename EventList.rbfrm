@@ -108,7 +108,7 @@ End
 		    
 		  Case Midi.EventType.PROGRAM_CHANGE
 		    Dim pcevent As Midi.Events.ProgramChangeEvent = Midi.Events.ProgramChangeEvent(EventData)
-		    value = Str(pcevent.Number)
+		    value = Str(pcevent.Voice)
 		    
 		  Case Midi.EventType.CHANNEL_PRESSURE
 		    Dim cpevent As Midi.Events.ChannelPressureEvent = Midi.Events.ChannelPressureEvent(EventData)
