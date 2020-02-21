@@ -34,8 +34,45 @@ Protected Class MidiFile
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Pause()
+		  Const HP_WAIT_PLAY = 2
+		  mLastError = HP_SetPlayStopWait(Me.Handle, HP_WAIT_PLAY)
+		  If mLastError = ErrorCodes.None Then mPaused = True Else Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Play(SelectedOnly As Boolean = False, SendBefore As Boolean = False)
+		  Dim selection As Integer = 1
+		  If SelectedOnly Then selection = 2
+		  mLastError = HP_Play(Me.Handle, selection, SendBefore)
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Resume()
+		  If mPaused Then
+		    Const HP_GO_PLAY = 0
+		    mLastError = HP_SetPlayStopWait(Me.Handle, HP_GO_PLAY)
+		  Else
+		    Me.Play()
+		  End If
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Save(MidiFile As FolderItem, Format As Int32 = HP_SMF0)
 		  mLastError = HP_Save(mMidi, MidiFile.AbsolutePath_, Format)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Stop()
+		  Const HP_STOP_PLAY = 1
+		  mLastError = HP_SetPlayStopWait(Me.Handle, HP_STOP_PLAY)
+		  If mLastError = ErrorCodes.None Then mPaused = False Else Break
 		End Sub
 	#tag EndMethod
 
@@ -53,10 +90,33 @@ Protected Class MidiFile
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  If Me.Handle <> Nil And IsPlaying Then Return HP_PlayEventTime(Me.Handle)
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If Me.Handle <> Nil Then mLastError = HP_SetPlayTime(Me.Handle, value)
+			End Set
+		#tag EndSetter
+		EventTime As Int32
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return mMidi
 			End Get
 		#tag EndGetter
 		Handle As Ptr
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  If Me.Handle <> Nil Then Return HP_IsPlaying(Me.Handle)
+			End Get
+		#tag EndGetter
+		IsPlaying As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -76,6 +136,23 @@ Protected Class MidiFile
 		Private mMidi As Ptr
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private mPaused As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTempo As Int32 = 100
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  If Me.Handle <> Nil And IsPlaying Then Return HP_PlayTime(Me.Handle)
+			End Get
+		#tag EndGetter
+		PlayTime As Int32
+	#tag EndComputedProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -93,6 +170,22 @@ Protected Class MidiFile
 			End Set
 		#tag EndSetter
 		PPQN As Int32
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mTempo
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  If Me.Handle = Nil Or Not IsPlaying Then Return
+			  mLastError = HP_PlayTempo(Me.Handle, value)
+			  If mLastError = ErrorCodes.None Then mTempo = value
+			End Set
+		#tag EndSetter
+		Tempo As Int32
 	#tag EndComputedProperty
 
 
@@ -116,6 +209,11 @@ Protected Class MidiFile
 			Group="ID"
 			InitialValue="-2147483648"
 			InheritedFrom="Object"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsPlaying"
+			Group="Behavior"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"

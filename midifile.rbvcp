@@ -9,7 +9,6 @@ Class=NoteEvent;Midi/Events/NoteEvent.rbbas;&h63F35FFF;&h212637FF;false
 Class=AfterTouchEvent;Midi/Events/AfterTouchEvent.rbbas;&h453B3FFF;&h212637FF;false
 Class=ControllerEvent;Midi/Events/ControllerEvent.rbbas;&h50F4EFFF;&h212637FF;false
 Class=MidiException;Midi/MidiException.rbbas;&h3DC6EFFF;&h13354FFF;false
-Class=Player;Midi/Player.rbbas;&h29AFBFFF;&h13354FFF;false
 Class=Device;Midi/Device.rbbas;&h3F5507FF;&h13354FFF;false
 Window=DemoWindow;DemoWindow.rbfrm;&h4C7867FF;&h0;false
 FileTypeSet=FileTypes1;FileTypes1.rbbas;&h7B5787FF;&h0;false

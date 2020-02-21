@@ -343,7 +343,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		player As Midi.Player
+		Player As Midi.MidiFile
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -387,7 +387,8 @@ End
 		Sub Action()
 		  Dim f As FolderItem = GetOpenFolderItem(FileTypes1.All)
 		  If f = Nil Or Not f.Exists Then Return
-		  player = New Midi.Player(f)
+		  player = New Midi.MidiFile
+		  player.Load(f)
 		  PlayBtn.Enabled = True
 		  
 		End Sub
