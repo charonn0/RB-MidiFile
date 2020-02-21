@@ -5,7 +5,7 @@ Inherits Midi.Events.RPNEvent
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Dim err As ErrorCodes = HP_ReadNRPN(MidiFile.Handle, EventID, mTime, mChannel, mAbsolute, mNumber, mValue)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.RPN_NRPN
+		  mType = EventType.NRPN
 		End Sub
 	#tag EndMethod
 

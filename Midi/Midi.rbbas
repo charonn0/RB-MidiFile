@@ -137,7 +137,7 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Function HP_ReadNRPN Lib "HP_midifile" Alias "?HP_ReadNRPN@@YAIPAVMIDIFile@@HPAH1PA_N11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Channel As Int32, ByRef Absolute As Int32, ByRef Number As Int32, ByRef Value As Int32) As ErrorCodes
+		Private Soft Declare Function HP_ReadNRPN Lib "HP_midifile" Alias "?HP_ReadNRPN@@YAIPAVMIDIFile@@HPAH1PA_N11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Channel As Int32, ByRef Absolute As Boolean, ByRef Number As Int32, ByRef Value As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -153,7 +153,7 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
-		Private Soft Declare Function HP_ReadRPN Lib "HP_midifile" Alias "?HP_ReadRPN@@YAIPAVMIDIFile@@HPAH1PA_N11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Channel As Int32, ByRef Absolute As Int32, ByRef Number As Int32, ByRef Value As Int32) As ErrorCodes
+		Private Soft Declare Function HP_ReadRPN Lib "HP_midifile" Alias "?HP_ReadRPN@@YAIPAVMIDIFile@@HPAH1PA_N11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Channel As Int32, ByRef Absolute As Boolean, ByRef Number As Int32, ByRef Value As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -255,14 +255,78 @@ Protected Module Midi
 	#tag EndEnum
 
 	#tag Enum, Name = EventType, Type = Integer, Flags = &h1
-		Note
-		  Aftertouch
-		  Controller
-		  RPN_NRPN
-		  ProgramChange
-		  ChannelPressure
-		  PitchWheel
-		Other
+		NOTE=&h000200
+		  AFTERTOUCH=&h000300
+		  CONTROLLER_TYPE=&h000400
+		  BANK_SELECT_MSB=&h010400
+		  MODULATION=&h020400
+		  BREATH=&h030400
+		  PORTAMENTO_TIME=&h040400
+		  MAIN_VOLUME=&h050400
+		  PANPOT=&h060400
+		  EXPRESSION=&h070400
+		  BANK_SELECT_LSB=&h080400
+		  SUSTAIN=&h090400
+		  PORTAMENTO=&h0a0400
+		  SOSTENUTO=&h0b0400
+		  SOFT_PEDAL=&h0c0400
+		  HARMONIC_CONTENT=&h0d0400
+		  RELEASE_TIME=&h0e0400
+		  ATTACK_TIME=&h0f0400
+		  BRIGHTNESS=&h100400
+		  DECAY_TIME=&h110400
+		  VIBRATO_RATE=&h120400
+		  VIBRATO_DEPTH=&h130400
+		  VIBRATO_DELAY=&h140400
+		  PORTAMENTO_CONTROL=&h150400
+		  REVERB_SEND_LEVEL=&h160400
+		  CHORUS_SEND_LEVEL=&h170400
+		  VARIATION_SEND_LEVEL=&h180400
+		  NRPN=&h190400
+		  RPN=&h1a0400
+		  ALL_SOUND_OFF=&h1b0400
+		  RESET_ALL_CONTROLLERS=&h1c0400
+		  ALL_NOTES_OFF=&h1d0400
+		  OMNI_OFF=&h1e0400
+		  OMNI_ON=&h1f0400
+		  MONO=&h200400
+		  POLY=&h210400
+		  PROGRAM_CHANGE=&h000500
+		  CHANNEL_PRESSURE=&h000600
+		  PITCH_WHEEL=&h000700
+		  SYSEX=&h000800
+		  SEQUENCE_NUMBER=&h000101
+		  TEXT=&h000201
+		  COPYRIGHT=&h000301
+		  SONG_TRACK_NAME=&h000401
+		  INSTRUMENT=&h000501
+		  LYRIC=&h000601
+		  MARKER=&h000701
+		  CUE_POINT=&h000801
+		  CHANNEL_PREFIX=&h000901
+		  MIDI_PORT=&h000a01
+		  END_OF_TRACK=&h000b01
+		  TEMPO=&h000c01
+		  SMPTE_OFFSET=&h000d01
+		  TIME_SIGNATURE=&h000e01
+		  KEY_SIGNATURE=&h000f01
+		  OTHER_META=&h00fe01
+		  SCORE_START_BAR=&h01ff01
+		  QUICK_START=&h02ff01
+		  SCORE_LAYOUT=&h03ff01
+		  KEYBOARD_VOICE=&h04ff01
+		  XF_VERSION_ID=&h41ff01
+		  CHORD_NAME=&h42ff01
+		  REHEARSAL_MARK=&h43ff01
+		  PHRASE_MARK=&h44ff01
+		  MAX_PHRASE_MARK=&h45ff01
+		  FINGERING_NUMBER=&h46ff01
+		  GUIDE_TRACK_FLAG=&h47ff01
+		  GUITAR_INFORMATION_FLAG=&h48ff01
+		  CHORD_VOICING_FOR_GUITAR=&h49ff01
+		  LYRICS_BITMAP=&h4aff01
+		  OTHER_YAMAHA_META=&h00ff01
+		RAW_EVENT=&h000002
 	#tag EndEnum
 
 

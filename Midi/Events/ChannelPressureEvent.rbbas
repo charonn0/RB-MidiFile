@@ -5,7 +5,7 @@ Inherits Midi.Events.MidiEvent
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Dim err As ErrorCodes = HP_ReadChannelPressure(MidiFile.Handle, EventID, mTime, mChannel, mPressure)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.ChannelPressure
+		  mType = EventType.CHANNEL_PRESSURE
 		End Sub
 	#tag EndMethod
 

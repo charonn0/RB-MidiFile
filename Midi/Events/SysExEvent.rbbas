@@ -5,7 +5,7 @@ Inherits Midi.Events.MidiEvent
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Dim err As ErrorCodes = HP_ReadSysEx(MidiFile.Handle, EventID, mTime, mData, mLength)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.Other
+		  mType = EventType.SYSEX
 		End Sub
 	#tag EndMethod
 

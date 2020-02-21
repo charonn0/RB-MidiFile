@@ -5,7 +5,7 @@ Inherits Midi.Events.MidiEvent
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Dim err As ErrorCodes = HP_ReadRPN(MidiFile.Handle, EventID, mTime, mChannel, mAbsolute, mNumber, mValue)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.RPN_NRPN
+		  mType = EventType.RPN
 		End Sub
 	#tag EndMethod
 
@@ -16,11 +16,11 @@ Inherits Midi.Events.MidiEvent
 			  return mAbsolute
 			End Get
 		#tag EndGetter
-		Absolute As Int32
+		Absolute As Boolean
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h1
-		Protected mAbsolute As Int32
+		Protected mAbsolute As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h1

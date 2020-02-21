@@ -5,7 +5,7 @@ Inherits Midi.Events.MidiEvent
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Dim err As ErrorCodes = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.PitchWheel
+		  mType = EventType.PITCH_WHEEL
 		End Sub
 	#tag EndMethod
 
