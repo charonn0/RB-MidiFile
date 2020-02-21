@@ -84,37 +84,37 @@ End
 		  time = FormatTime(EventData.Time)
 		  channel = Str(EventData.Channel)
 		  
-		  Select Case EventData
-		  Case IsA Midi.Events.NoteEvent
+		  Select Case EventData.Type
+		  Case Midi.EventType.NOTE
 		    Dim note As Midi.Events.NoteEvent = Midi.Events.NoteEvent(EventData)
 		    length = Str(note.Length)
 		    value = Str(note.Note)
 		    modifier = Str(note.Velocity)
 		    
-		  Case IsA Midi.Events.AfterTouchEvent
+		  Case Midi.EventType.AFTERTOUCH
 		    Dim atevent As Midi.Events.AfterTouchEvent = Midi.Events.AfterTouchEvent(EventData)
 		    value = Str(atevent.Note)
 		    modifier = Str(atevent.Pressure)
 		    
-		  Case IsA Midi.Events.ControllerEvent
+		  Case Midi.EventType.CONTROLLER_TYPE
 		    Dim ctlevent As Midi.Events.ControllerEvent = Midi.Events.ControllerEvent(EventData)
 		    value = Str(ctlevent.Value)
 		    modifier = Str(ctlevent.Number)
 		    
-		  Case IsA Midi.Events.RPNEvent
+		  Case Midi.EventType.RPN
 		    Dim rpnevent As Midi.Events.RPNEvent = Midi.Events.RPNEvent(EventData)
 		    value = Str(rpnevent.Value)
 		    modifier = Str(rpnevent.Number)
 		    
-		  Case IsA Midi.Events.ProgramChangeEvent
+		  Case Midi.EventType.PROGRAM_CHANGE
 		    Dim pcevent As Midi.Events.ProgramChangeEvent = Midi.Events.ProgramChangeEvent(EventData)
 		    value = Str(pcevent.Number)
 		    
-		  Case IsA Midi.Events.ChannelPressureEvent
+		  Case Midi.EventType.CHANNEL_PRESSURE
 		    Dim cpevent As Midi.Events.ChannelPressureEvent = Midi.Events.ChannelPressureEvent(EventData)
 		    value = Str(cpevent.Pressure)
 		    
-		  Case IsA Midi.Events.PitchWheelEvent
+		  Case Midi.EventType.PITCH_WHEEL
 		    Dim pwevent As Midi.Events.PitchWheelEvent = Midi.Events.PitchWheelEvent(EventData)
 		    value = Str(pwevent.Value)
 		    
@@ -151,6 +151,15 @@ End
 		  Return out
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub LoadEvents(Midi As Midi.EventSource)
+		  Do
+		    AddEventRow(Midi.CurrentEvent)
+		  Loop Until Not Midi.GetNextEvent()
+		  Self.Show()
+		End Sub
 	#tag EndMethod
 
 
