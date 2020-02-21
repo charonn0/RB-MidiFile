@@ -1,34 +1,40 @@
 #tag Class
 Protected Class EventSource
-Inherits MidiFile
+	#tag Method, Flags = &h0
+		Sub Constructor(Source As Midi.MidiFile)
+		  mSource = Source
+		  If Not GetNextEvent() Then Raise New MidiException(ErrorCodes.BINDING_ERROR)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function GetNextEvent() As Boolean
 		  Dim id, chan, time As Int32
 		  Dim type As UInt32
 		  
-		  mLastError = HP_ReadEvent(Me.Handle, id, chan, time, type)
+		  mLastError = HP_ReadEvent(mSource.Handle, id, chan, time, type)
 		  If mLastError = ErrorCodes.None Then
 		    Select Case Ctype(type, Midi.EventType)
-		    Case EventType.Note
-		      mCurrentEvent = New Midi.Events.NoteEvent(Me, id)
+		    Case EventType.NOTE
+		      mCurrentEvent = New Midi.Events.NoteEvent(mSource, id)
 		      
-		    Case EventType.Aftertouch
-		      mCurrentEvent = New Midi.Events.AfterTouchEvent(Me, id)
+		    Case EventType.AFTERTOUCH
+		      mCurrentEvent = New Midi.Events.AfterTouchEvent(mSource, id)
 		      
-		    Case EventType.Controller
-		      mCurrentEvent = New Midi.Events.ControllerEvent(Me, id)
+		    Case EventType.CONTROLLER_TYPE
+		      mCurrentEvent = New Midi.Events.ControllerEvent(mSource, id)
 		      
-		    Case EventType.RPN_NRPN
-		      mCurrentEvent = New Midi.Events.RPNEvent(Me, id)
+		    Case EventType.RPN
+		      mCurrentEvent = New Midi.Events.RPNEvent(mSource, id)
 		      
-		    Case EventType.ProgramChange
-		      mCurrentEvent = New Midi.Events.ProgramChangeEvent(Me, id)
+		    Case EventType.PROGRAM_CHANGE
+		      mCurrentEvent = New Midi.Events.ProgramChangeEvent(mSource, id)
 		      
-		    Case EventType.ChannelPressure
-		      mCurrentEvent = New Midi.Events.ChannelPressureEvent(Me, id)
+		    Case EventType.CHANNEL_PRESSURE
+		      mCurrentEvent = New Midi.Events.ChannelPressureEvent(mSource, id)
 		      
-		    Case EventType.PitchWheel
-		      mCurrentEvent = New Midi.Events.PitchWheelEvent(Me, id)
+		    Case EventType.PITCH_WHEEL
+		      mCurrentEvent = New Midi.Events.PitchWheelEvent(mSource, id)
 		      
 		    Else
 		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
@@ -38,13 +44,6 @@ Inherits MidiFile
 		  End If
 		  
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub Load(MidiFile As FolderItem)
-		  Super.Load(MidiFile)
-		  Call GetNextEvent()
-		End Sub
 	#tag EndMethod
 
 
@@ -59,6 +58,14 @@ Inherits MidiFile
 
 	#tag Property, Flags = &h21
 		Private mCurrentEvent As Midi.Events.MidiEvent
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mLastError As Midi.ErrorCodes
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mSource As MidiFile
 	#tag EndProperty
 
 
