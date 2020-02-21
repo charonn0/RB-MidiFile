@@ -17,7 +17,14 @@ Inherits Midi.Events.MidiEvent
 			  return mData
 			End Get
 		#tag EndGetter
-		Data As Ptr
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeSysEx(mMidiFile.Handle, mEventID, value)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLength = value.Size
+			End Set
+		#tag EndSetter
+		Data As MemoryBlock
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0

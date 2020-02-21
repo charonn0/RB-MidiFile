@@ -1,34 +1,24 @@
 #tag Class
-Protected Class PitchWheelEvent
-Inherits Midi.Events.MidiEvent
+Protected Class CuePointEvent
+Inherits Midi.Events.TextEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
+		  Dim err As ErrorCodes = HP_ReadCuePoint(MidiFile.Handle, EventID, mTime, mText)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.PITCH_WHEEL
+		  mType = EventType.MARKER
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h21
-		Private mValue As Int32
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mValue
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  Dim err As ErrorCodes = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
-			End Set
-		#tag EndSetter
-		Value As Int32
-	#tag EndComputedProperty
+	#tag Method, Flags = &h0
+		Sub Text(Assigns NewText As String)
+		  Dim mb As MemoryBlock = NewText + Chr(0)
+		  Dim err As ErrorCodes = HP_ChangeCuePoint(mMidiFile.Handle, mEventID, mb)
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  Me.Destructor()
+		  Me.Constructor(mMidiFile, mEventID)
+		End Sub
+	#tag EndMethod
 
 
 	#tag ViewBehavior

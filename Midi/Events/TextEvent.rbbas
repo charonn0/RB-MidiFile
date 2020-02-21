@@ -1,34 +1,43 @@
 #tag Class
-Protected Class PitchWheelEvent
+Protected Class TextEvent
 Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
+		  Dim err As ErrorCodes = HP_ReadText(MidiFile.Handle, EventID, mTime, mText)
 		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  mType = EventType.PITCH_WHEEL
+		  mType = EventType.TEXT
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Destructor()
+		  If mText <> Nil Then HP_Delete(mText)
+		  mText = Nil
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function Text() As String
+		  Dim mb As MemoryBlock = mText
+		  If mb <> Nil Then Return mb.CString(0)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Text(Assigns NewText As String)
+		  Dim mb As MemoryBlock = NewText + Chr(0)
+		  Dim err As ErrorCodes = HP_ChangeText(mMidiFile.Handle, mEventID, mb)
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  Me.Destructor()
+		  Me.Constructor(mMidiFile, mEventID)
 		End Sub
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21
-		Private mValue As Int32
+	#tag Property, Flags = &h1
+		Protected mText As Ptr
 	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mValue
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  Dim err As ErrorCodes = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
-			End Set
-		#tag EndSetter
-		Value As Int32
-	#tag EndComputedProperty
 
 
 	#tag ViewBehavior

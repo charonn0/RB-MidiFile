@@ -21,6 +21,12 @@ Inherits Midi.Events.MidiEvent
 			  return mPressure
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeChannelPressure(mMidiFile.Handle, mEventID, value)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Pressure As Int32
 	#tag EndComputedProperty
 

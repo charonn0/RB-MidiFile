@@ -25,6 +25,12 @@ Inherits Midi.Events.MidiEvent
 			  return mNumber
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeController(mMidiFile.Handle, mEventID, value, mValue, HP_NO_PERCENT)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Number As Int32
 	#tag EndComputedProperty
 
@@ -34,8 +40,18 @@ Inherits Midi.Events.MidiEvent
 			  return mValue
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeController(mMidiFile.Handle, mEventID, mNumber, value, HP_NO_PERCENT)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Value As Int32
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = HP_NO_PERCENT, Type = Boolean, Dynamic = False, Default = \"False", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior

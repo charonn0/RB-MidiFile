@@ -25,6 +25,12 @@ Inherits Midi.Events.MidiEvent
 			  return mNote
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, value, mPressure, HP_NO_PERCENT)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Note As Int32
 	#tag EndComputedProperty
 
@@ -34,8 +40,18 @@ Inherits Midi.Events.MidiEvent
 			  return mPressure
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, mNote, value, HP_NO_PERCENT)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Pressure As Int32
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = HP_NO_PERCENT, Type = Boolean, Dynamic = False, Default = \"False", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior

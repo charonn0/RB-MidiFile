@@ -18,10 +18,16 @@ Inherits Midi.Events.MidiEvent
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mNumber
+			  return mVoice
 			End Get
 		#tag EndGetter
-		Number As Int32
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeProgram(mMidiFile.Handle, mEventID, value)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
+		Voice As Int32
 	#tag EndComputedProperty
 
 

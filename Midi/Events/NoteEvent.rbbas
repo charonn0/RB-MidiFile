@@ -17,6 +17,12 @@ Inherits Midi.Events.MidiEvent
 			  return mLength
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Length As Int32
 	#tag EndComputedProperty
 
@@ -38,6 +44,12 @@ Inherits Midi.Events.MidiEvent
 			  return mNote
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Note As Int32
 	#tag EndComputedProperty
 
@@ -47,8 +59,21 @@ Inherits Midi.Events.MidiEvent
 			  return mVelocity
 			End Get
 		#tag EndGetter
+		#tag Setter
+			Set
+			  Dim err As ErrorCodes = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			End Set
+		#tag EndSetter
 		Velocity As Int32
 	#tag EndComputedProperty
+
+
+	#tag Constant, Name = HP_ABSOLUTE, Type = Boolean, Dynamic = False, Default = \"True", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = HP_RELATIVE, Type = Boolean, Dynamic = False, Default = \"False", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior
