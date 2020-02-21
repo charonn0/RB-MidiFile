@@ -513,3 +513,13 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events EditBtn
+	#tag Event
+		Sub Action()
+		  If Player <> Nil Then
+		    Dim evntlst As New EventList
+		    evntlst.LoadEvents(New Midi.EventSource(Player))
+		  End If
+		End Sub
+	#tag EndEvent
+#tag EndEvents
