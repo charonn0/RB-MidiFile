@@ -1,17 +1,17 @@
 #tag Class
 Protected Class MidiEvent
-	#tag Method, Flags = &h21
-		Private Sub Constructor()
-		  
-		End Sub
-	#tag EndMethod
-
 	#tag Method, Flags = &h0
 		Sub Constructor(ID As Int32, Channel As Int32, Time As Int32, Type As Midi.EventType)
 		  mEventID = ID
 		  mChannel = Channel
 		  mTime = Time
 		  mType = Type
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Constructor(MidiFile As Midi.MidiFile)
+		  mMidiFile = MidiFile
 		End Sub
 	#tag EndMethod
 
@@ -53,6 +53,10 @@ Protected Class MidiEvent
 
 	#tag Property, Flags = &h1
 		Protected mEventID As Int32
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected mMidiFile As MidiFile
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
