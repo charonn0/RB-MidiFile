@@ -14,11 +14,45 @@ Protected Class MidiFile
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub DeselectChannel(Channel As Int32)
+		  mLastError = HP_DeselectChan(mMidi, Channel)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub DeselectEvent(EventID As Int32)
+		  mLastError = HP_Deselect(mMidi, EventID)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub Destructor()
 		  If mMidi <> Nil Then mLastError = HP_Free(mMidi)
 		  mMidi = Nil
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetTaktBeatTick(Time As Int32, ByRef Takt As Int32, ByRef Beat As Int32, ByRef Tick As Int32) As Boolean
+		  mLastError = HP_GetTaktBeatTick(mMidi, Time, Takt, Beat, Tick)
+		  Return mLastError = ErrorCodes.None
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetTaktBeatTick(Time As Int32, TimeOfLastTimeSignature As Int32, TaktOfLastTimeSignature As Int32, Num As Int32, Denum As Int32, ByRef Takt As Int32, ByRef Beat As Int32, ByRef Tick As Int32) As Boolean
+		  mLastError = HP_GetTaktBeatTick(mMidi, Time, TimeOfLastTimeSignature, TaktOfLastTimeSignature, Num, Denum, Takt, Beat, Tick)
+		  Return mLastError = ErrorCodes.None
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function GetTimeFromTaktBeatTick(Takt As Int32, Beat As Int32, Tick As Int32) As Int32
+		  Dim time As Int32
+		  mLastError = HP_GetTimeFromTaktBeatTick(mMidi, Takt, Beat, Tick, time)
+		  Return time
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -65,6 +99,18 @@ Protected Class MidiFile
 	#tag Method, Flags = &h0
 		Sub Save(MidiFile As FolderItem, Format As Int32 = HP_SMF0)
 		  mLastError = HP_Save(mMidi, MidiFile.AbsolutePath_, Format)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SelectEvent(EventID As Int32)
+		  mLastError = HP_Select(mMidi, EventID)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SelectEvents(Channel As Int32, StartTime As Int32, EndTime As Int32)
+		  mLastError = HP_SelectChanTime(mMidi, Channel, StartTime, EndTime)
 		End Sub
 	#tag EndMethod
 
@@ -188,11 +234,25 @@ Protected Class MidiFile
 		Tempo As Int32
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Dim ticks As Int32
+			  If mMidi <> Nil Then mLastError = HP_GetLastTime(mMidi, ticks)
+			  Return ticks
+			End Get
+		#tag EndGetter
+		TickCount As Int32
+	#tag EndComputedProperty
+
 
 	#tag Constant, Name = HP_ALL_EVENTS, Type = Double, Dynamic = False, Default = \"-2", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = HP_NO_CHAN, Type = Double, Dynamic = False, Default = \"-1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = HP_NO_TIME_LIMIT, Type = Double, Dynamic = False, Default = \"-1", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = HP_SMF0, Type = Double, Dynamic = False, Default = \"0", Scope = Public

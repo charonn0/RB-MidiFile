@@ -57,6 +57,14 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Deselect Lib "HP_midifile" Alias "?HP_Deselect@@YAIPAVMIDIFile@@H@Z" (MidiFile As Ptr, EventID As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_DeselectChan Lib "HP_midifile" Alias "?HP_DeselectChan@@YAIPAVMIDIFile@@H@Z" (MidiFile As Ptr, Channel As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_Duration Lib "HP_midifile" Alias "?HP_Duration@@YAJPAVMIDIFile@@H@Z" (MIDIFile As Ptr, Mode As Int32) As Int32
 	#tag EndExternalMethod
 
@@ -69,7 +77,23 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_GetLastTime Lib "HP_midifile" Alias "?HP_GetLastTime@@YAIPAVMIDIFile@@PAH@Z" (MIDIFile As Ptr, ByRef Time As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_GetMIDIDevices Lib "HP_midifile" Alias "?HP_GetMIDIDevices@@YAIPAPAUHP_device@@PAH@Z" (ByRef Devices As Ptr, ByRef Count As UInt32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_GetTaktBeatTick Lib "HP_midifile" Alias "?HP_GetTaktBeatTick@@YAIPAVMIDIFile@@HPAH11@Z" (MIDIFile As Ptr, Time As Int32, ByRef Takt As Int32, ByRef Beat As Int32, ByRef Tick As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_GetTaktBeatTick Lib "HP_midifile" Alias "?HP_GetTaktBeatTick@@YAIPAVMIDIFile@@HHHHHPAH11@Z" (MIDIFile As Ptr, Time As Int32, TimeOfLastTimeSignature As Int32, TaktOfLastTimeSignature As Int32, Num As Int32, Denum As Int32, ByRef Takt As Int32, ByRef Beat As Int32, ByRef Tick As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_GetTimeFromTaktBeatTick Lib "HP_midifile" Alias "?HP_GetTimeFromTaktBeatTick@@YAIPAVMIDIFile@@HHHPAH@Z" (MIDIFile As Ptr, Takt As Int32, Beat As Int32, Tick As Int32, ByRef Time As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
@@ -166,6 +190,14 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_Save Lib "HP_midifile" Alias "?HP_Save@@YAIPAVMIDIFile@@PBDH@Z" (MIDIFile As Ptr, Path As CString, Format As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Select Lib "HP_midifile" Alias "?HP_Select@@YAIPAVMIDIFile@@H@Z" (MidiFile As Ptr, EventID As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_SelectChanTime Lib "HP_midifile" Alias "?HP_SelectChanTime@@YAIPAVMIDIFile@@HHH@Z" (MidiFile As Ptr, Channel As Int32, Time1 As Int32, Time2 As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
