@@ -41,6 +41,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeNote Lib "HP_midifile" Alias "?HP_ChangeNote@@YAIPAVMIDIFile@@HHH_N@Z" (MIDIFile As Ptr, ID As Int32, Channel As Int32, Note As Int32, Absolute As Boolean) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangePPQN Lib "HP_midifile" Alias "?HP_ChangePPQN@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, PPQN As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
