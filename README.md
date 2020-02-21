@@ -5,7 +5,7 @@
 This example plays a MIDI file:
 ```vbnet
   Dim midfile As FolderItem = SpecialFolder.Desktop.Child("example.mid")
-  Dim player As New Midi.Player(midfile)
+  Dim player As New Midi.MidiFile(midfile)
   player.Play()
   Do Until Not player.IsPlaying
     App.DoEvents()
@@ -20,8 +20,7 @@ This example plays a MIDI file:
 †= work in progress
 
 ## Synopsis
-A MIDI file, whether for playing or editing, is represented by an instance of the `MidiFile` class, or one of its subclasses. For example, to play a MIDI file you would use the
-`Player` subclass.
+A MIDI file, whether for playing or editing, is represented by an instance of the `MidiFile` class. 
 
 ## How to incorporate HP MIDIFILE into your Realbasic/Xojo project
 ### Import the Midi module
