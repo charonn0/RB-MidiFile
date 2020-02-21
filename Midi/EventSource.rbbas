@@ -36,6 +36,27 @@ Protected Class EventSource
 		    Case EventType.PITCH_WHEEL
 		      mCurrentEvent = New Midi.Events.PitchWheelEvent(mSource, id)
 		      
+		    Case EventType.TEXT
+		      mCurrentEvent = New Midi.Events.TextEvent(mSource, id)
+		      
+		    Case EventType.COPYRIGHT
+		      mCurrentEvent = New Midi.Events.CopyRightEvent(mSource, id)
+		      
+		    Case EventType.SONG_TRACK_NAME
+		      mCurrentEvent = New Midi.Events.SongTrackNameEvent(mSource, id)
+		      
+		    Case EventType.INSTRUMENT
+		      mCurrentEvent = New Midi.Events.InstrumentEvent(mSource, id)
+		      
+		    Case EventType.LYRIC
+		      mCurrentEvent = New Midi.Events.LyricEvent(mSource, id)
+		      
+		    Case EventType.MARKER
+		      mCurrentEvent = New Midi.Events.MarkerEvent(mSource, id)
+		      
+		    Case EventType.CUE_POINT
+		      mCurrentEvent = New Midi.Events.CuePointEvent(mSource, id)
+		      
 		    Else
 		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
 		      
