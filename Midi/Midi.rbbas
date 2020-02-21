@@ -213,6 +213,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ShiftEvent Lib "HP_midifile" Alias "?HP_ShiftEvent@@YAIPAVMIDIFile@@HH@Z" (MIDIFile As Ptr, EventID As Int32, Ticks As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_TypeName Lib "HP_midifile" Alias "?HP_TypeName@@YAPADI@Z" (Type As EventType) As Ptr
 	#tag EndExternalMethod
 

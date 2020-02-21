@@ -15,6 +15,19 @@ Protected Class MidiEvent
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function Time() As Int32
+		  return mTime
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Time(Assigns NewTime As Int32)
+		  Dim err As ErrorCodes = HP_ShiftEvent(mMidiFile.Handle, mEventID, NewTime)
+		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		End Sub
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -49,15 +62,6 @@ Protected Class MidiEvent
 	#tag Property, Flags = &h1
 		Protected mType As Midi.EventType
 	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mTime
-			End Get
-		#tag EndGetter
-		Time As Int32
-	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
