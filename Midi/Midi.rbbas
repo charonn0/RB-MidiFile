@@ -189,6 +189,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_Rewind Lib "HP_midifile" Alias "?HP_Rewind@@YAIPAVMIDIFile@@@Z" (MIDIFile As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_Save Lib "HP_midifile" Alias "?HP_Save@@YAIPAVMIDIFile@@PBDH@Z" (MIDIFile As Ptr, Path As CString, Format As Int32) As ErrorCodes
 	#tag EndExternalMethod
 

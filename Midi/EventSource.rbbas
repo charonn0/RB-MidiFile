@@ -46,6 +46,12 @@ Protected Class EventSource
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Rewind()
+		  mLastError = HP_Rewind(mSource.Handle)
+		End Sub
+	#tag EndMethod
+
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
