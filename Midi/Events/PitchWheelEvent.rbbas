@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.PITCH_WHEEL
 		End Sub
 	#tag EndMethod
@@ -23,8 +23,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Value As Int32

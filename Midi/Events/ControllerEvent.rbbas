@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadController(MidiFile.Handle, EventID, mTime, mChannel, mNumber, mValue)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadController(MidiFile.Handle, EventID, mTime, mChannel, mNumber, mValue)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.CONTROLLER_TYPE
 		End Sub
 	#tag EndMethod
@@ -27,8 +27,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeController(mMidiFile.Handle, mEventID, value, mValue, HP_NO_PERCENT)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, value, mValue, HP_NO_PERCENT)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Number As Int32
@@ -42,8 +42,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeController(mMidiFile.Handle, mEventID, mNumber, value, HP_NO_PERCENT)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, mNumber, value, HP_NO_PERCENT)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Value As Int32

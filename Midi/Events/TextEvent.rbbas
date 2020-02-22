@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadText(MidiFile.Handle, EventID, mTime, mText)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadText(MidiFile.Handle, EventID, mTime, mText)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.TEXT
 		End Sub
 	#tag EndMethod
@@ -27,8 +27,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Text(Assigns NewText As String)
 		  Dim mb As MemoryBlock = NewText + Chr(0)
-		  Dim err As ErrorCodes = HP_ChangeText(mMidiFile.Handle, mEventID, mb)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ChangeText(mMidiFile.Handle, mEventID, mb)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  Me.Destructor()
 		  Me.Constructor(mMidiFile, mEventID)
 		End Sub

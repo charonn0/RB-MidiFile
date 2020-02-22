@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadProgramChange(MidiFile.Handle, EventID, mTime, mChannel, mVoice)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadProgramChange(MidiFile.Handle, EventID, mTime, mChannel, mVoice)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.PROGRAM_CHANGE
 		End Sub
 	#tag EndMethod
@@ -23,8 +23,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeProgram(mMidiFile.Handle, mEventID, value)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeProgram(mMidiFile.Handle, mEventID, value)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Voice As Int32

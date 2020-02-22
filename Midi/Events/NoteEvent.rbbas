@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadNote(MidiFile.Handle, EventID, mTime, mChannel, mNote, mVelocity, mLength)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadNote(MidiFile.Handle, EventID, mTime, mChannel, mNote, mVelocity, mLength)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.NOTE
 		End Sub
 	#tag EndMethod
@@ -19,8 +19,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Length As Int32
@@ -46,8 +46,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Note As Int32
@@ -61,8 +61,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Velocity As Int32

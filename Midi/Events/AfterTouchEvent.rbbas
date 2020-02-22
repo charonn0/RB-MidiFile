@@ -4,8 +4,8 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  Dim err As ErrorCodes = HP_ReadAftertouch(MidiFile.Handle, EventID, mTime, mChannel, mNote, mPressure)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ReadAftertouch(MidiFile.Handle, EventID, mTime, mChannel, mNote, mPressure)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.Aftertouch
 		End Sub
 	#tag EndMethod
@@ -27,8 +27,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, value, mPressure, HP_NO_PERCENT)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, value, mPressure, HP_NO_PERCENT)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Note As Int32
@@ -42,8 +42,8 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  Dim err As ErrorCodes = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, mNote, value, HP_NO_PERCENT)
-			  If err <> ErrorCodes.None Then Raise New MidiException(err)
+			  mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, mNote, value, HP_NO_PERCENT)
+			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			End Set
 		#tag EndSetter
 		Pressure As Int32

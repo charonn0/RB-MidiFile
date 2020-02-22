@@ -23,8 +23,8 @@ Protected Class MidiEvent
 
 	#tag Method, Flags = &h0
 		Sub Time(Assigns NewTime As Int32)
-		  Dim err As ErrorCodes = HP_ShiftEvent(mMidiFile.Handle, mEventID, NewTime)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
+		  mLastError = HP_ShiftEvent(mMidiFile.Handle, mEventID, NewTime)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		End Sub
 	#tag EndMethod
 
@@ -53,6 +53,10 @@ Protected Class MidiEvent
 
 	#tag Property, Flags = &h1
 		Protected mEventID As Int32
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected mLastError As Midi.ErrorCodes
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
