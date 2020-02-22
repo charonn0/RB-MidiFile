@@ -57,6 +57,18 @@ Protected Class EventSource
 		    Case EventType.CUE_POINT
 		      mCurrentEvent = New Midi.Events.CuePointEvent(mSource, id)
 		      
+		    Case EventType.TEMPO
+		      mCurrentEvent = New Midi.Events.TempoEvent(mSource, id)
+		      
+		    Case EventType.SMPTE_OFFSET
+		      mCurrentEvent = New Midi.Events.SmpteOffsetEvent(mSource, id)
+		      
+		    Case EventType.TIME_SIGNATURE
+		      mCurrentEvent = New Midi.Events.TimeSignatureEvent(mSource, id)
+		      
+		    Case EventType.KEY_SIGNATURE
+		      mCurrentEvent = New Midi.Events.KeySignatureEvent(mSource, id)
+		      
 		    Else
 		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
 		      
