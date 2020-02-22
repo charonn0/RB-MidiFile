@@ -125,6 +125,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeTimeSignature Lib "HP_midifile" Alias "?HP_ChangeTimeSignature@@YAIPAVMIDIFile@@HHHHH@Z" (MIDIFile As Ptr, ID As Int32, Num As Int32, Denum As Int32, MetronomeClick As Int32, N32 As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangeVelocity Lib "HP_midifile" Alias "?HP_ChangeVelocity@@YAIPAVMIDIFile@@HHHH_N@Z" (MIDIFile As Ptr, ID As Int32, Channel As Int32, Note As Int32, Value As Int32, Absolute As Boolean) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -325,6 +329,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadEventData Lib "HP_midifile" Alias "?HP_ReadEventData@@YAIPAVMIDIFile@@HPAHPAPAE1@Z" (MIDIFile As Ptr, ID As Int32, ByRef Time As Int32, ByRef Data As Ptr, ByRef Length As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadInstrument Lib "HP_midifile" Alias "?HP_ReadInstrument@@YAIPAVMIDIFile@@HPAHPAPAD@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Text As Ptr) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -390,6 +398,10 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadText Lib "HP_midifile" Alias "?HP_ReadText@@YAIPAVMIDIFile@@HPAHPAPAD@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Text As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadTimeSignature Lib "HP_midifile" Alias "?HP_ReadTimeSignature@@YAIPAVMIDIFile@@HPAH1111@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Num As Int32, ByRef Denum As Int32, ByRef MetronomeClick As Int32, ByRef N32 As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
