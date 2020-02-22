@@ -118,6 +118,58 @@ End
 		    Dim pwevent As Midi.Events.PitchWheelEvent = Midi.Events.PitchWheelEvent(EventData)
 		    value = Str(pwevent.Value)
 		    
+		  Case Midi.EventType.COPYRIGHT
+		    Dim cpevent As Midi.Events.CopyRightEvent = Midi.Events.CopyRightEvent(EventData)
+		    value = cpevent.Text
+		    
+		  Case Midi.EventType.CUE_POINT
+		    Dim cpevent As Midi.Events.CuePointEvent = Midi.Events.CuePointEvent(EventData)
+		    value = cpevent.Text
+		    
+		  Case Midi.EventType.INSTRUMENT
+		    Dim ievent As Midi.Events.InstrumentEvent = Midi.Events.InstrumentEvent(EventData)
+		    value = ievent.Text
+		    
+		  Case Midi.EventType.KEY_SIGNATURE
+		    Dim ksevent As Midi.Events.KeySignatureEvent = Midi.Events.KeySignatureEvent(EventData)
+		    value = ksevent.Text
+		    
+		  Case Midi.EventType.LYRIC
+		    Dim levent As Midi.Events.LyricEvent = Midi.Events.LyricEvent(EventData)
+		    value = levent.Text
+		    
+		  Case Midi.EventType.MARKER
+		    Dim mevent As Midi.Events.MarkerEvent = Midi.Events.MarkerEvent(EventData)
+		    value = mevent.Text
+		    
+		  Case Midi.EventType.MIDI_PORT
+		    Dim mpevent As Midi.Events.MidiPortEvent = Midi.Events.MidiPortEvent(EventData)
+		    value = Str(mpevent.Port)
+		    
+		  Case Midi.EventType.SMPTE_OFFSET
+		    Dim smevent As Midi.Events.SmpteOffsetEvent = Midi.Events.SmpteOffsetEvent(EventData)
+		    value = Str(smevent.Hour) + ":" + Str(smevent.Minute) + ":" + Str(smevent.Second)
+		    
+		  Case Midi.EventType.SONG_TRACK_NAME
+		    Dim stnevent As Midi.Events.SongTrackNameEvent = Midi.Events.SongTrackNameEvent(EventData)
+		    value = stnevent.Text
+		    
+		  Case Midi.EventType.SYSEX
+		    Dim sxevent As Midi.Events.SysExEvent = Midi.Events.SysExEvent(EventData)
+		    value = Str(sxevent.Length)
+		    
+		  Case Midi.EventType.TEMPO
+		    Dim tmpevent As Midi.Events.TempoEvent = Midi.Events.TempoEvent(EventData)
+		    value = Str(tmpevent.BPM) + "/" + Str(tmpevent.CPM)
+		    
+		  Case Midi.EventType.TEXT
+		    Dim txtevent As Midi.Events.TextEvent = Midi.Events.TextEvent(EventData)
+		    value = txtevent.Text
+		    
+		  Case Midi.EventType.TIME_SIGNATURE
+		    Dim tsevent As Midi.Events.TimeSignatureEvent = Midi.Events.TimeSignatureEvent(EventData)
+		    value = Str(tsevent.Num) + "/" + Str(tsevent.Denum)
+		    
 		  Else
 		    
 		  End Select
