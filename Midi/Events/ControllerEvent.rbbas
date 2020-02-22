@@ -21,10 +21,6 @@ Inherits Midi.Events.MidiEvent
 		Private mNumber As Int32
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private mValue As Int32
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get

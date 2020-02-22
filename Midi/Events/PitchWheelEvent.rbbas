@@ -17,10 +17,6 @@ Inherits Midi.Events.MidiEvent
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21
-		Private mValue As Int32
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get

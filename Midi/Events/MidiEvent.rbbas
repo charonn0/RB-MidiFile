@@ -87,11 +87,19 @@ Protected Class MidiEvent
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
+		Protected mNote As Int32
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
 		Protected mTime As Int32
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
 		Protected mType As Midi.EventType
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected mValue As Int32
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0

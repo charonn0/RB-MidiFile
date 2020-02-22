@@ -34,10 +34,6 @@ Inherits Midi.Events.MidiEvent
 		Protected mNumber As Int32
 	#tag EndProperty
 
-	#tag Property, Flags = &h1
-		Protected mValue As Int32
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get

@@ -18,10 +18,6 @@ Inherits Midi.Events.MidiEvent
 
 
 	#tag Property, Flags = &h21
-		Private mNote As Int32
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
 		Private mPressure As Int32
 	#tag EndProperty
 
