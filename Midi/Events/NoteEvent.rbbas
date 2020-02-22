@@ -25,8 +25,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mLength = value
 			End Set
 		#tag EndSetter
 		Length As Int32
@@ -48,8 +51,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mNote = value
 			End Set
 		#tag EndSetter
 		Note As Int32
@@ -63,8 +69,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mVelocity = value
 			End Set
 		#tag EndSetter
 		Velocity As Int32

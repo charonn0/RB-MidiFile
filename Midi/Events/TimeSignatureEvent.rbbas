@@ -25,8 +25,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, value, mMetronome, mN32)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, value, mMetronome, mN32)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mDenum = value
 			End Set
 		#tag EndSetter
@@ -45,8 +47,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, mDenum, value, mN32)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, mDenum, value, mN32)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mMetronome = value
 			End Set
 		#tag EndSetter
@@ -73,8 +77,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, mDenum, mMetronome, value)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, mNum, mDenum, mMetronome, value)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mN32 = value
 			End Set
 		#tag EndSetter
@@ -89,8 +95,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, value, mDenum, mMetronome, mN32)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTimeSignature(mMidiFile.Handle, mEventID, value, mDenum, mMetronome, mN32)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mNum = value
 			End Set
 		#tag EndSetter

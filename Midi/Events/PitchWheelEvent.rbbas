@@ -29,8 +29,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangePitchWheel(mMidiFile.Handle, mEventID, value)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mValue = value
 			End Set
 		#tag EndSetter
 		Value As Int32

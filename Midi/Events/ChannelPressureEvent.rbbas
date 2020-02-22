@@ -29,8 +29,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeChannelPressure(mMidiFile.Handle, mEventID, value)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeChannelPressure(mMidiFile.Handle, mEventID, value)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mPressure = value
 			End Set
 		#tag EndSetter
 		Pressure As Int32

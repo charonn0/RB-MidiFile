@@ -33,8 +33,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, value, mPressure, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, value, mPressure, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mNote = value
 			End Set
 		#tag EndSetter
 		Note As Int32
@@ -48,8 +51,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, mNote, value, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeAftertouch(mMidiFile.Handle, mEventID, mNote, value, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mPressure = value
 			End Set
 		#tag EndSetter
 		Pressure As Int32

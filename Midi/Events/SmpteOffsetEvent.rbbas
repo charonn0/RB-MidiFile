@@ -25,8 +25,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, mSecond, value, mSubframes)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, mSecond, value, mSubframes)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mFrames = value
 			End Set
 		#tag EndSetter
@@ -41,8 +43,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, value, mMinute, mSecond, mFrames, mSubframes)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, value, mMinute, mSecond, mFrames, mSubframes)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mHour = value
 			End Set
 		#tag EndSetter
@@ -65,8 +69,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, value, mSecond, mFrames, mSubframes)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, value, mSecond, mFrames, mSubframes)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mMinute = value
 			End Set
 		#tag EndSetter
@@ -93,8 +99,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, value, mFrames, mSubframes)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, value, mFrames, mSubframes)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mSecond = value
 			End Set
 		#tag EndSetter
@@ -110,8 +118,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, mSecond, mFrames, value)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeSmpteOffset(mMidiFile.Handle, mEventID, mHour, mMinute, mSecond, mFrames, value)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mSubframes = value
 			End Set
 		#tag EndSetter

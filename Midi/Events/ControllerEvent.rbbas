@@ -33,8 +33,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, value, mValue, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, value, mValue, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mNumber = value
 			End Set
 		#tag EndSetter
 		Number As Int32
@@ -48,8 +51,11 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, mNumber, value, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeController(mMidiFile.Handle, mEventID, mNumber, value, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
+			  mValue = value
 			End Set
 		#tag EndSetter
 		Value As Int32

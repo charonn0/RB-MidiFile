@@ -33,8 +33,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeMIDIPort(mMidiFile.Handle, mEventID, mTrack, value)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeMIDIPort(mMidiFile.Handle, mEventID, mTrack, value)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mPort = value
 			End Set
 		#tag EndSetter
@@ -49,8 +51,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeMIDIPort(mMidiFile.Handle, mEventID, value, mPort)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeMIDIPort(mMidiFile.Handle, mEventID, value, mPort)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mTrack = value
 			End Set
 		#tag EndSetter

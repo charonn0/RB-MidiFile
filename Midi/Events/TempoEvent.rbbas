@@ -25,8 +25,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTempo(mMidiFile.Handle, mEventID, value, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTempo(mMidiFile.Handle, mEventID, value, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mBPM = value
 			End Set
 		#tag EndSetter
@@ -41,8 +43,10 @@ Inherits Midi.Events.MidiEvent
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLastError = HP_ChangeTempo(mMidiFile.Handle, mEventID, value, HP_NO_PERCENT)
-			  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  If mMidiFile <> Nil Then
+			    mLastError = HP_ChangeTempo(mMidiFile.Handle, mEventID, value, HP_NO_PERCENT)
+			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+			  End If
 			  mCPM = value
 			End Set
 		#tag EndSetter
