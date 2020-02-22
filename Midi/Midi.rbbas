@@ -77,6 +77,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeMIDIPort Lib "HP_midifile" Alias "?HP_ChangeMidiPort@@YAIPAVMIDIFile@@HHH@Z" (MIDIFile As Ptr, ID As Int32, Track As Int32, Port As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangeNote Lib "HP_midifile" Alias "?HP_ChangeNote@@YAIPAVMIDIFile@@HHH_N@Z" (MIDIFile As Ptr, ID As Int32, Channel As Int32, Note As Int32, Absolute As Boolean) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -322,6 +326,10 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadMarker Lib "HP_midifile" Alias "?HP_ReadMarker@@YAIPAVMIDIFile@@HPAHPAPAD@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Text As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadMIDIPort Lib "HP_midifile" Alias "?HP_ReadMidiPort@@YAIPAVMIDIFile@@HPAH11@Z" (MIDIFile As Ptr, ID As Int32, ByRef Time As Int32, ByRef Track As Int32, ByRef Port As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
