@@ -81,6 +81,10 @@ Protected Class MidiEvent
 	#tag EndComputedProperty
 
 
+	#tag Constant, Name = HP_NO_CHAN, Type = Double, Dynamic = False, Default = \"-1", Scope = Public
+	#tag EndConstant
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Index"

@@ -50,10 +50,6 @@ Inherits Midi.Events.MidiEvent
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = HP_NO_PERCENT, Type = Boolean, Dynamic = False, Default = \"False", Scope = Private
-	#tag EndConstant
-
-
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Index"
