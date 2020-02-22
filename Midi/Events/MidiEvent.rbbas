@@ -87,7 +87,7 @@ Protected Class MidiEvent
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
-		Protected mNote As Int32
+		Protected mModifier As Int32
 	#tag EndProperty
 
 	#tag Property, Flags = &h1

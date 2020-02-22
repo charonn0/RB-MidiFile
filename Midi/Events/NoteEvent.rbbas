@@ -4,7 +4,7 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  mLastError = HP_ReadNote(MidiFile.Handle, EventID, mTime, mChannel, mNote, mVelocity, mLength)
+		  mLastError = HP_ReadNote(MidiFile.Handle, EventID, mTime, mChannel, mValue, mVelocity, mLength)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.NOTE
 		End Sub
@@ -12,7 +12,7 @@ Inherits Midi.Events.MidiEvent
 
 	#tag Method, Flags = &h0
 		Sub Insert(Destination As Midi.MidiFile)
-		  mLastError = HP_InsertNote(Destination.Handle, mTime, mLength, mNote, mChannel, mVelocity)
+		  mLastError = HP_InsertNote(Destination.Handle, mTime, mLength, mValue, mChannel, mVelocity)
 		End Sub
 	#tag EndMethod
 
@@ -26,7 +26,7 @@ Inherits Midi.Events.MidiEvent
 		#tag Setter
 			Set
 			  If mMidiFile <> Nil Then
-			    mLastError = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			    mLastError = HP_ChangeNoteLength(mMidiFile.Handle, mEventID, mChannel, mValue, value, HP_ABSOLUTE)
 			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			  End If
 			  mLength = value
@@ -42,7 +42,7 @@ Inherits Midi.Events.MidiEvent
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mNote
+			  return mValue
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -51,7 +51,7 @@ Inherits Midi.Events.MidiEvent
 			    mLastError = HP_ChangeNote(mMidiFile.Handle, mEventID, mChannel, value, HP_ABSOLUTE)
 			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			  End If
-			  mNote = value
+			  mValue = value
 			End Set
 		#tag EndSetter
 		Note As Int32
@@ -66,7 +66,7 @@ Inherits Midi.Events.MidiEvent
 		#tag Setter
 			Set
 			  If mMidiFile <> Nil Then
-			    mLastError = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mNote, value, HP_ABSOLUTE)
+			    mLastError = HP_ChangeVelocity(mMidiFile.Handle, mEventID, mChannel, mValue, value, HP_ABSOLUTE)
 			    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 			  End If
 			  mVelocity = value
