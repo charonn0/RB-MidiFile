@@ -14,7 +14,6 @@ Window=DemoWindow;DemoWindow.rbfrm;&h4C7867FF;&h0;false
 FileTypeSet=FileTypes1;FileTypes1.rbbas;&h7B5787FF;&h0;false
 Class=MidiFile;Midi/MidiFile.rbbas;&h10B5D7FF;&h13354FFF;false
 Class=EventSource;Midi/EventSource.rbbas;&h2ED60FFF;&h13354FFF;false
-Class=EventSink;Midi/EventSink.rbbas;&h723127FF;&h13354FFF;false
 Class=MidiEvent;Midi/Events/MidiEvent.rbbas;&h6BA6AFFF;&h212637FF;false
 Class=RPNEvent;Midi/Events/RPNEvent.rbbas;&h34255FFF;&h212637FF;false
 Class=NRPNEvent;Midi/Events/NRPNEvent.rbbas;&h7BD5A7FF;&h212637FF;false
