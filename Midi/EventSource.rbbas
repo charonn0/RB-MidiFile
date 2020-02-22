@@ -54,6 +54,9 @@ Protected Class EventSource
 		    Case EventType.MARKER
 		      mCurrentEvent = New Midi.Events.MarkerEvent(mSource, id)
 		      
+		    Case EventType.MIDI_PORT
+		      mCurrentEvent = New Midi.Events.MidiPortEvent(mSource, id)
+		      
 		    Case EventType.CUE_POINT
 		      mCurrentEvent = New Midi.Events.CuePointEvent(mSource, id)
 		      
