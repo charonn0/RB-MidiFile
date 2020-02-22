@@ -29,6 +29,7 @@ Class=InstrumentEvent;Midi/Events/InstrumentEvent.rbbas;&h63BF9FFF;&h212637FF;fa
 Class=LyricEvent;Midi/Events/LyricEvent.rbbas;&h1C749FFF;&h212637FF;false
 Class=MarkerEvent;Midi/Events/MarkerEvent.rbbas;&h16D7CFFF;&h212637FF;false
 Class=CuePointEvent;Midi/Events/CuePointEvent.rbbas;&h59EB37FF;&h212637FF;false
+Class=KeySignatureEvent;Midi/Events/KeySignatureEvent.rbbas;&h55A2FFF;&h212637FF;false
 DefaultWindow=DemoWindow
 MajorVersion=1
 MinorVersion=0

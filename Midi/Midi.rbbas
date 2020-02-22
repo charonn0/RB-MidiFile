@@ -65,6 +65,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeKeySignature Lib "HP_midifile" Alias "?HP_ChangeKeySignature@@YAIPAVMIDIFile@@HPAD@Z" (MIDIFile As Ptr, ID As Int32, NewText As CString) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangeLyric Lib "HP_midifile" Alias "?HP_ChangeLyric@@YAIPAVMIDIFile@@HPAD@Z" (MIDIFile As Ptr, ID As Int32, NewText As CString) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -306,6 +310,10 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadInstrument Lib "HP_midifile" Alias "?HP_ReadInstrument@@YAIPAVMIDIFile@@HPAHPAPAD@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Text As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadKeySignature Lib "HP_midifile" Alias "?HP_ReadKeySignature@@YAIPAVMIDIFile@@HPAHPAPAD@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Text As Ptr) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
