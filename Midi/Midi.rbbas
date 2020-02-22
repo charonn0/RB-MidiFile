@@ -137,6 +137,22 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_CWInsGetBanks Lib "HP_midifile" Alias "?HP_CWInsGetBanks@@YAIPAVMIDIFile@@PAPAUHP_cwbank@@PAH@Z" (MIDIFile As Ptr, ByRef Banks As Ptr, ByRef BankCount As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_CWInsGetDefs Lib "HP_midifile" Alias "?HP_CWInsGetDefs@@YAIPAVMIDIFile@@PAPAUHP_cwdef@@PAH@Z" (MIDIFile As Ptr, ByRef Definitions As Ptr, ByRef DefinitionCount As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_CWInsLoad Lib "HP_midifile" Alias "?HP_CWInsLoad@@YAIPAVMIDIFile@@PBD@Z" (MidiFile As Ptr, FileName As CString) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_CWInsSetDef Lib "HP_midifile" Alias "?HP_CWInsSetDef@@YAIPAVMIDIFile@@H@Z" (MIDIFile As Ptr, Index As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Sub HP_Delete Lib "HP_midifile" Alias "?HP_Delete@@YAXPAX@Z" (mb As Ptr)
 	#tag EndExternalMethod
 
@@ -466,6 +482,15 @@ Protected Module Midi
 	#tag Constant, Name = HP_NO_PERCENT, Type = Boolean, Dynamic = False, Default = \"False", Scope = Private
 	#tag EndConstant
 
+
+	#tag Structure, Name = HP_CWBANK, Flags = &h21
+		BankNumber As UInt32
+		BankName As String*64
+	#tag EndStructure
+
+	#tag Structure, Name = HP_CWDEF, Flags = &h21
+		Name As String*80
+	#tag EndStructure
 
 	#tag Structure, Name = HP_DEVICE, Flags = &h21
 		ID As Int32
