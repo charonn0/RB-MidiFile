@@ -101,6 +101,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeSmpteOffset Lib "HP_midifile" Alias "?HP_ChangeSmpteOffset@@YAIPAVMIDIFile@@HHHHHH@Z" (MIDIFile As Ptr, ID As Int32, Hour As Int32, Minute As Int32, Second As Int32, Frame As Int32, Subframe As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangeSongTrackName Lib "HP_midifile" Alias "?HP_ChangeSongTrackName@@YAIPAVMIDIFile@@HPAD@Z" (MIDIFile As Ptr, ID As Int32, NewText As CString) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -354,6 +358,10 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadRPN Lib "HP_midifile" Alias "?HP_ReadRPN@@YAIPAVMIDIFile@@HPAH1PA_N11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Channel As Int32, ByRef Absolute As Boolean, ByRef Number As Int32, ByRef Value As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadSmpteOffset Lib "HP_midifile" Alias "?HP_ReadSmpteOffset@@YAIPAVMIDIFile@@HPAH1111@Z" (MIDIFile As Ptr, ID As Int32, ByRef Time As Int32, ByRef Hour As Int32, ByRef Minute As Int32, ByRef Second As Int32, ByRef Frame As Int32, ByRef Subframe As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
