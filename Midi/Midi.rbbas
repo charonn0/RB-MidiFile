@@ -113,6 +113,14 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeTempo Lib "HP_midifile" Alias "?HP_ChangeTempo@@YAIPAVMIDIFile@@HH_N@Z" (MIDIFile As Ptr, ID As Int32, Value As Int32, Percent As Boolean) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ChangeTempo Lib "HP_midifile" Alias "?HP_ChangeTempo@@YAIPAVMIDIFile@@HN_N@Z" (MIDIFile As Ptr, ID As Int32, Value As Single, Percent As Boolean) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ChangeText Lib "HP_midifile" Alias "?HP_ChangeText@@YAIPAVMIDIFile@@HPAD@Z" (MIDIFile As Ptr, ID As Int32, NewText As CString) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -370,6 +378,14 @@ Protected Module Midi
 
 	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_ReadSysEx Lib "HP_midifile" Alias "?HP_ReadSysex@@YAIPAVMIDIFile@@HPAHPAPAE1@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef Data As Ptr, ByRef Length As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadTempo Lib "HP_midifile" Alias "?HP_ReadTempo@@YAIPAVMIDIFile@@HPAH11@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef BPS As Int32, ByRef CPS As Int32) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_ReadTempo Lib "HP_midifile" Alias "?HP_ReadTempo@@YAIPAVMIDIFile@@HPAHPAN1@Z" (MIDIFile As Ptr, EventID As Int32, ByRef Time As Int32, ByRef BPS As Single, ByRef CPS As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
