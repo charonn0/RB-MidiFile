@@ -16,6 +16,15 @@ Protected Class MidiEvent
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Constructor(MidiFile As Midi.MidiFile, ID As Int32)
+		  mEventID = ID
+		  mMidiFile = MidiFile
+		  mLastError = HP_ReadEventData(mMidiFile.Handle, ID, mTime, mData, mLength)
+		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Insert(Destination As Midi.MidiFile)
 		  mLastError = HP_InsertRawEvent(Destination.Handle, mTime, mData, mLength)
 		End Sub
