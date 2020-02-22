@@ -10,6 +10,12 @@ Inherits Midi.Events.MidiEvent
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertController(Destination.Handle, mTime, mChannel, CType(mType, UInt32), mValue, mNumber)
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mNumber As Int32

@@ -10,6 +10,12 @@ Inherits Midi.Events.MidiEvent
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertAftertouch(Destination.Handle, mTime, mChannel, mNote, mPressure)
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mNote As Int32

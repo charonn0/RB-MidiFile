@@ -18,6 +18,12 @@ Inherits Midi.Events.MidiEvent
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertText(Destination.Handle, mTime, mText)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Text() As String
 		  Dim mb As MemoryBlock = mText
 		  If mb <> Nil Then Return mb.CString(0)

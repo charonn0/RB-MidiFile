@@ -11,6 +11,12 @@ Inherits Midi.Events.TextEvent
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertSongTrackName(Destination.Handle, mText, mChannel)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Text(Assigns NewText As String)
 		  Dim mb As MemoryBlock = NewText + Chr(0)
 		  mLastError = HP_ChangeSongTrackName(mMidiFile.Handle, mEventID, mb)

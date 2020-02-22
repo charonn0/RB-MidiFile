@@ -10,6 +10,12 @@ Inherits Midi.Events.RPNEvent
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertNRPNAbsolute(Destination.Handle, mTime, mChannel, mNumber, mValue)
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty

@@ -10,6 +10,12 @@ Inherits Midi.Events.MidiEvent
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertPitchWheel(Destination.Handle, mTime, mChannel, mValue)
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
 		Private mValue As Int32

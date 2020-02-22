@@ -16,6 +16,12 @@ Protected Class MidiEvent
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Insert(Destination As Midi.MidiFile)
+		  mLastError = HP_InsertRawEvent(Destination.Handle, mTime, mData, mLength)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function Time() As Int32
 		  return mTime
 		End Function
