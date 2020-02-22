@@ -53,8 +53,21 @@ Protected Class MidiEvent
 		EventID As Int32
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mLength
+			End Get
+		#tag EndGetter
+		Length As Int32
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h1
-		Protected mChannel As Int32
+		Protected mChannel As Int32 = HP_NO_CHAN
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected mData As Ptr
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
@@ -63,6 +76,10 @@ Protected Class MidiEvent
 
 	#tag Property, Flags = &h1
 		Protected mLastError As Midi.ErrorCodes
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected mLength As Int32
 	#tag EndProperty
 
 	#tag Property, Flags = &h1

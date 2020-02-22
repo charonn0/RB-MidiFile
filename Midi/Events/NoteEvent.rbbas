@@ -33,10 +33,6 @@ Inherits Midi.Events.MidiEvent
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mLength As Int32
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
 		Private mNote As Int32
 	#tag EndProperty
 

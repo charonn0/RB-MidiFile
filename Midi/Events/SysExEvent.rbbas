@@ -42,14 +42,6 @@ Inherits Midi.Events.MidiEvent
 		Length As Int32
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private mData As Ptr
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mLength As Int32
-	#tag EndProperty
-
 
 	#tag ViewBehavior
 		#tag ViewProperty
