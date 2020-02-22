@@ -4,7 +4,7 @@ Inherits Midi.Events.TextEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)
-		  mLastError = HP_ReadCuePoint(MidiFile.Handle, EventID, mTime, mText)
+		  mLastError = HP_ReadCuePoint(MidiFile.Handle, EventID, mTime, mData)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.MARKER
 		End Sub
@@ -12,7 +12,7 @@ Inherits Midi.Events.TextEvent
 
 	#tag Method, Flags = &h0
 		Sub Insert(Destination As Midi.MidiFile)
-		  mLastError = HP_InsertCuePoint(Destination.Handle, mTime, mText)
+		  mLastError = HP_InsertCuePoint(Destination.Handle, mTime, mData)
 		End Sub
 	#tag EndMethod
 
