@@ -6,7 +6,7 @@ Inherits Midi.Events.MidiEvent
 		  Super.Constructor(MidiFile)
 		  mLastError = HP_ReadMIDIPort(MidiFile.Handle, EventID, mTime, mTrack, mPort)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
-		  mType = EventType.CONTROLLER_TYPE
+		  mType = EventType.MIDI_PORT
 		End Sub
 	#tag EndMethod
 
