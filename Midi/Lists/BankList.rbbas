@@ -5,7 +5,10 @@ Inherits DefinitionList
 		Sub Constructor(Definitions As Midi.InstrumentDefinitionFile)
 		  Super.Constructor(HP_CWBANK.Size)
 		  mLastError = HP_CWInsGetBanks(Definitions.Handle, mList, mCount)
-		  If mList = Nil Or mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+		  If mList = Nil Or mLastError <> ErrorCodes.None Then
+		    If mLastError <> ErrorCodes.CwinsNoInstrument Then Raise New MidiException(mLastError)
+		  End If
+		  mDefs = Definitions
 		End Sub
 	#tag EndMethod
 
