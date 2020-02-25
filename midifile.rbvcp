@@ -39,6 +39,7 @@ Class=TimeSignatureEvent;Midi/Events/TimeSignatureEvent.rbbas;&h493AFFFF;&h21263
 Class=KeySignatureEvent;Midi/Events/KeySignatureEvent.rbbas;&h55A2FFF;&h212637FF;false
 Class=DefinitionList;Midi/DefinitionList.rbbas;&h85317FF;&h13354FFF;false
 Class=BankList;Midi/Lists/BankList.rbbas;&h191B77FF;&h40BA87FF;false
+Class=BankVoiceList;Midi/Lists/BankVoiceList.rbbas;&h7F06BFFF;&h40BA87FF;false
 DefaultWindow=DemoWindow
 MajorVersion=1
 MinorVersion=0

@@ -1,13 +1,11 @@
 #tag Class
-Protected Class BankList
+Protected Class BankVoiceList
 Inherits DefinitionList
 	#tag Method, Flags = &h0
-		Sub Constructor(Definitions As Midi.InstrumentDefinitionFile)
-		  Super.Constructor(HP_CWBANK.Size)
-		  mLastError = HP_CWInsGetBanks(Definitions.Handle, mList, mCount)
-		  If mList = Nil Or mLastError <> ErrorCodes.None Then
-		    If mLastError <> ErrorCodes.CwinsNoInstrument Then Raise New MidiException(mLastError)
-		  End If
+		Sub Constructor(Definitions As Midi.InstrumentDefinitionFile, BankNumber As Int32)
+		  Super.Constructor(HP_CWVOICE.Size)
+		  mLastError = HP_CWInsGetBankVoices(Definitions.Handle, BankNumber, mData, mList)
+		  If mList = Nil Or mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mDefs = Definitions
 		End Sub
 	#tag EndMethod
@@ -19,20 +17,10 @@ Inherits DefinitionList
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function ItemNumber(Index As Integer) As Int32
-		  Dim def As HP_CWBANK = Me.GetItem(Index).HP_CWBANK
-		  Return def.BankNumber
-		  
-		End Function
-	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function Voices(BankNumber As Int32) As Midi.Lists.BankVoiceList
-		  If mDefs <> Nil Then Return New Midi.Lists.BankVoiceList(mDefs, BankNumber)
-		End Function
-	#tag EndMethod
-
+	#tag Property, Flags = &h21
+		Private mData As Ptr
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mDefs As InstrumentDefinitionFile

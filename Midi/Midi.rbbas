@@ -141,6 +141,10 @@ Protected Module Midi
 	#tag EndExternalMethod
 
 	#tag ExternalMethod, Flags = &h21
+		Private Soft Declare Function HP_CWInsGetBankVoices Lib "HP_midifile" Alias "?HP_CWInsGetBankVoices@@YAIPAVMIDIFile@@JPAPADPAPAUHP_cwvoice@@@Z" (MIDIFile As Ptr, Bank As Int32, ByRef Name As Ptr, ByRef Voices As Ptr) As ErrorCodes
+	#tag EndExternalMethod
+
+	#tag ExternalMethod, Flags = &h21
 		Private Soft Declare Function HP_CWInsGetDefs Lib "HP_midifile" Alias "?HP_CWInsGetDefs@@YAIPAVMIDIFile@@PAPAUHP_cwdef@@PAH@Z" (MIDIFile As Ptr, ByRef Definitions As Ptr, ByRef DefinitionCount As Int32) As ErrorCodes
 	#tag EndExternalMethod
 
@@ -490,6 +494,10 @@ Protected Module Midi
 
 	#tag Structure, Name = HP_CWDEF, Flags = &h21
 		Name As String*80
+	#tag EndStructure
+
+	#tag Structure, Name = HP_CWVOICE, Flags = &h21
+		Name As String*64
 	#tag EndStructure
 
 	#tag Structure, Name = HP_DEVICE, Flags = &h21
