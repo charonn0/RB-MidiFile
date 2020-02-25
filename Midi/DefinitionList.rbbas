@@ -2,7 +2,7 @@
 Protected Class DefinitionList
 	#tag Method, Flags = &h1
 		Protected Sub Constructor(StructSize As Integer)
-		  
+		  mSize = StructSize
 		End Sub
 	#tag EndMethod
 
