@@ -33,12 +33,21 @@ Inherits Midi.Events.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Text(Assigns NewText As String)
 		  Dim mb As MemoryBlock = NewText + Chr(0)
-		  mLastError = HP_ChangeText(mMidiFile.Handle, mEventID, mb)
-		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
-		  Me.Destructor()
-		  Me.Constructor(mMidiFile, mEventID)
+		  If mMidiFile <> Nil Then
+		    mLastError = HP_ChangeText(mMidiFile.Handle, mEventID, mb)
+		    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+		    Me.Destructor()
+		    Me.Constructor(mMidiFile, mEventID)
+		  Else
+		    mRaw = mb
+		  End If
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h1
+		Protected mRaw As MemoryBlock
+	#tag EndProperty
 
 
 	#tag ViewBehavior
