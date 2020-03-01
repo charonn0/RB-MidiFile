@@ -72,6 +72,9 @@ Protected Class EventSource
 		    Case EventType.KEY_SIGNATURE
 		      mCurrentEvent = New Midi.Events.KeySignatureEvent(mSource, id)
 		      
+		    Case EventType.SYSEX
+		      mCurrentEvent = New Midi.Events.SysExEvent(mSource, id)
+		      
 		    Else
 		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
 		      
