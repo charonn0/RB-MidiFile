@@ -81,6 +81,7 @@ End
 		Sub AddEventRow(EventData As Midi.Events.MidiEvent)
 		  Dim name, time, channel, length, value, modifier As String
 		  name = Midi.EventName(EventData.Type)
+		  If name = "No Type Found" Then name = name + "(" + Hex(EventData.Type) + ")"
 		  time = FormatTime(EventData.Time)
 		  channel = Str(EventData.Channel)
 		  
