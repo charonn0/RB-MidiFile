@@ -38,8 +38,11 @@ Protected Class MidiEvent
 
 	#tag Method, Flags = &h0
 		Sub Time(Assigns NewTime As Int32)
-		  mLastError = HP_ShiftEvent(mMidiFile.Handle, mEventID, NewTime)
-		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+		  If mMidiFile <> Nil Then
+		    mLastError = HP_ShiftEvent(mMidiFile.Handle, mEventID, NewTime)
+		    If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
+		  End If
+		  mTime = NewTime
 		End Sub
 	#tag EndMethod
 
