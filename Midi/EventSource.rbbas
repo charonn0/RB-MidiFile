@@ -75,6 +75,48 @@ Protected Class EventSource
 		    Case EventType.SYSEX
 		      mCurrentEvent = New Midi.Events.SysExEvent(mSource, id)
 		      
+		    Case EventType.SCORE_START_BAR
+		      mCurrentEvent = New Midi.Events.ScoreStartBarEvent(mSource, id)
+		      
+		    Case EventType.SCORE_LAYOUT
+		      mCurrentEvent = New Midi.Events.ScoreLayoutEvent(mSource, id)
+		      
+		    Case EventType.QUICK_START
+		      mCurrentEvent = New Midi.Events.QuickStartEvent(mSource, id)
+		      
+		    Case EventType.KEYBOARD_VOICE
+		      mCurrentEvent = New Midi.Events.KeyboardVoiceEvent(mSource, id)
+		      
+		    Case EventType.XF_VERSION_ID
+		      mCurrentEvent = New Midi.Events.XFVersionIDEvent(mSource, id)
+		      
+		    Case EventType.REHEARSAL_MARK
+		      mCurrentEvent = New Midi.Events.RehearsalMarkEvent(mSource, id)
+		      
+		    Case EventType.PHRASE_MARK
+		      mCurrentEvent = New Midi.Events.PhraseMarkEvent(mSource, id)
+		      
+		    Case EventType.MAX_PHRASE_MARK
+		      mCurrentEvent = New Midi.Events.MaxPhraseMarkEvent(mSource, id)
+		      
+		    Case EventType.FINGERING_NUMBER
+		      mCurrentEvent = New Midi.Events.FingeringNumberEvent(mSource, id)
+		      
+		    Case EventType.GUIDE_TRACK_FLAG
+		      mCurrentEvent = New Midi.Events.GuideTrackFlagEvent(mSource, id)
+		      
+		    Case EventType.GUITAR_INFORMATION_FLAG
+		      mCurrentEvent = New Midi.Events.GuitarInformationFlagEvent(mSource, id)
+		      
+		    Case EventType.CHORD_VOICING_FOR_GUITAR
+		      mCurrentEvent = New Midi.Events.ChordVoicingForGuitarEvent(mSource, id)
+		      
+		    Case EventType.OTHER_YAMAHA_META
+		      mCurrentEvent = New Midi.Events.YamahaEvent(mSource, id)
+		      
+		    Case EventType.CHORD_NAME
+		      mCurrentEvent = New Midi.Events.ChordEvent(mSource, id)
+		      
 		    Else
 		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
 		      
