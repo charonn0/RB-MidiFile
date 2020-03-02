@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadAftertouch(MidiFile.Handle, EventID, mTime, mChannel, mValue, mModifier)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.Aftertouch
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

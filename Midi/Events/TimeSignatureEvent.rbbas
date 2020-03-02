@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadTimeSignature(MidiFile.Handle, EventID, mTime, mNum, mDenum, mMetronome, mN32)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.TIME_SIGNATURE
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

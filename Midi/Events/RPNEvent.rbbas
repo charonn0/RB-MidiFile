@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadRPN(MidiFile.Handle, EventID, mTime, mChannel, mAbsolute, mNumber, mValue)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.RPN
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

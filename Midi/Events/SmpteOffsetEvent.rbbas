@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadSmpteOffset(MidiFile.Handle, EventID, mTime, mHour, mMinute, mSecond, mFrames, mSubframes)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.SMPTE_OFFSET
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

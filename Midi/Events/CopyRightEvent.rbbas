@@ -7,6 +7,7 @@ Inherits Midi.Events.TextEvent
 		  mLastError = HP_ReadCopyright(MidiFile.Handle, EventID, mTime, mData)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.COPYRIGHT
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

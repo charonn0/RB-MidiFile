@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadPitchWheel(MidiFile.Handle, EventID, mTime, mChannel, mValue)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.PITCH_WHEEL
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 

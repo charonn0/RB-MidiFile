@@ -7,6 +7,7 @@ Inherits Midi.Events.MidiEvent
 		  mLastError = HP_ReadTempo(MidiFile.Handle, EventID, mTime, mCPM, mBPM)
 		  If mLastError <> ErrorCodes.None Then Raise New MidiException(mLastError)
 		  mType = EventType.TEMPO
+		  mEventID = EventID
 		End Sub
 	#tag EndMethod
 
