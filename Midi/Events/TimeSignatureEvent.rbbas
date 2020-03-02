@@ -1,6 +1,6 @@
 #tag Class
 Protected Class TimeSignatureEvent
-Inherits Midi.Events.MidiEvent
+Inherits Midi.MidiEvent
 	#tag Method, Flags = &h0
 		Sub Constructor(MidiFile As Midi.MidiFile, EventID As Int32)
 		  Super.Constructor(MidiFile)

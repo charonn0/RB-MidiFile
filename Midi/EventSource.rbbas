@@ -118,9 +118,10 @@ Protected Class EventSource
 		      mCurrentEvent = New Midi.Events.ChordEvent(mSource, id)
 		      
 		    Else
-		      mCurrentEvent = New Midi.Events.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
+		      mCurrentEvent = New Midi.MidiEvent(id, chan, time, Ctype(type, Midi.EventType))
 		      
 		    End Select
+		    If time <> mCurrentEvent.Time Or chan <> mCurrentEvent.Channel Then Break
 		    Return True
 		  End If
 		  
@@ -140,11 +141,11 @@ Protected Class EventSource
 			  Return mCurrentEvent
 			End Get
 		#tag EndGetter
-		CurrentEvent As Midi.Events.MidiEvent
+		CurrentEvent As Midi.MidiEvent
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
-		Private mCurrentEvent As Midi.Events.MidiEvent
+		Private mCurrentEvent As Midi.MidiEvent
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

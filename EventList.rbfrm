@@ -78,7 +78,7 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Sub AddEventRow(EventData As Midi.Events.MidiEvent)
+		Sub AddEventRow(EventData As Midi.MidiEvent)
 		  Dim name, time, channel, length, value, modifier As String
 		  name = Midi.EventName(EventData.Type)
 		  If name = "No Type Found" Then name = name + "(" + Hex(EventData.Type) + ")"
