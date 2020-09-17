@@ -13,23 +13,25 @@ Protected Class Device
 		  Dim devlist As Ptr
 		  Dim devcount As UInt32
 		  Dim err As ErrorCodes
+		  Dim dev As Device
 		  
 		  err = HP_GetMIDIDevices(devlist, devcount)
-		  If err <> ErrorCodes.None Then Raise New MidiException(err)
-		  If Index > devcount Then Raise New OutOfBoundsException
-		  Dim item As Ptr = devlist
-		  Dim c As Integer
-		  Dim dev As Device
-		  Do Until item = Nil
-		    If Index = c Then
-		      dev = New Device(item.HP_DEVICE)
-		      Exit Do
-		    End If
-		    item = Ptr(Integer(item) + HP_DEVICE.Size)
-		    c = c + 1
-		  Loop
-		  
-		  Call HP_Delete(devlist)
+		  Try
+		    If err <> ErrorCodes.None Then Raise New MidiException(err)
+		    If Index > devcount Then Raise New OutOfBoundsException
+		    Dim item As Ptr = devlist
+		    Dim c As Integer
+		    Do Until item = Nil
+		      If Index = c Then
+		        dev = New Device(item.HP_DEVICE)
+		        Exit Do
+		      End If
+		      item = Ptr(Integer(item) + HP_DEVICE.Size)
+		      c = c + 1
+		    Loop
+		  Finally
+		    If devlist <> Nil Then Call HP_Delete(devlist)
+		  End Try
 		  Return dev
 		  
 		End Function
@@ -45,7 +47,7 @@ Protected Class Device
 			  Dim err As ErrorCodes
 			  
 			  err = HP_GetMIDIDevices(devlist, devcount)
-			  Call HP_Delete(devlist)
+			  If devlist <> Nil Then Call HP_Delete(devlist)
 			  If err <> ErrorCodes.None Then Return 0
 			  Return devcount
 			  
