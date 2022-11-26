@@ -3,7 +3,7 @@
 
 ## Example
 This example plays a MIDI file:
-```vbnet
+```realbasic
   Dim midfile As FolderItem = SpecialFolder.Desktop.Child("example.mid")
   Dim player As New Midi.MidiFile(midfile)
   player.Play()
